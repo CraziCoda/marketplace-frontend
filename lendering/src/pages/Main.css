@@ -1,0 +1,17 @@
+main {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+main .unit .title {
+	font-size: 32px;
+	margin-bottom: 20px;
+}
+
+main .unit .list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
