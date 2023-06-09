@@ -1,4 +1,7 @@
 import "./App.css";
+import Chat from "./pages/Chat";
+import DashboardB from "./pages/DashBoardB";
+import DashboardL from "./pages/DashBoardL";
 import Feed from "./pages/Feed";
 import Home from "./pages/Home";
 import Main from "./pages/Main";
@@ -8,7 +11,7 @@ import Signup from "./pages/Signup";
 function App() {
 	return (
 		<>
-			<Main />
+			<Chat/>
 		</>
 	);
 }
