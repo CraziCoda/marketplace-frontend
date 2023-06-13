@@ -1,11 +1,11 @@
-.container {
+.container.l {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
 	align-items: center;
 }
 
-header {
+header.l {
 	width: 100%;
 	box-shadow: 0px 2px 2px #d4d2d2;
     display: flex;
@@ -13,16 +13,17 @@ header {
     align-items: center;
     justify-content: center;
     height: 10%;
+    
 }
 
-header span{
+header.l span{
     width: 70%;
     color: #0981D8;
     font-size: 30px;
     font-weight: bold;
 }
 
-main{
+main.l{
     display: flex;
     flex-direction: row;
     height: 90%;
@@ -30,7 +31,7 @@ main{
     align-items: center;
 }
 
-main .design{
+main.l .design{
     height: 90%;
     width: 10%;
     background-color: #0981D8;
@@ -38,7 +39,7 @@ main .design{
     margin-right: 100px;
 }
 
-main .figures{
+main.l .figures{
     display: flex;
     flex-direction: column;
     height: 90%;
@@ -46,12 +47,12 @@ main .figures{
     width: 90%;
 }
 
-main .figures .ac{
+main.l .figures .ac{
     display: flex;
     flex-direction: row;
 }
 
-main .figures .ac .actions{
+main.l .figures .ac .actions{
     background-color: #0981D8;
     color: white;
     margin-right: 10px;
@@ -60,7 +61,7 @@ main .figures .ac .actions{
     border-radius: 20px;
 }
 
-main .figures .stats{
+main.l .figures .stats{
     display: flex;
     flex-direction: row;
     justify-content: space-between;

@@ -2,7 +2,7 @@ import Card from "../components/Card";
 import "./Main.css";
 const Main = () => {
 	return (
-		<div className="container">
+		<div className="container main">
 			<main>
 				<div className="unit">
 					<div className="title">Ranking Lenders</div>

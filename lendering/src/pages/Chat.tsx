@@ -1,15 +1,15 @@
 import "./Chat.css"
 const Chat = () => {
 	return (
-		<div className="container">
-			<header>
+		<div className="container chat">
+			<header className="chat">
 				<span>LENDERING</span>
 			</header>
-            <main>
-                <div className="board">
+            <main className="chat">
+                <div className="board chat">
                     <div className="person">Jeff Sarpong</div>
                 </div>
-                <div className="panel">b</div>
+                <div className="panel chat">b</div>
             </main>
 		</div>
 	);

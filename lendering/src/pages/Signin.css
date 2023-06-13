@@ -1,4 +1,4 @@
-.container{
+.container.signin{
     padding: 40px 30px;
     width: 50%;
     display: flex;
@@ -9,7 +9,7 @@ header{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    
+    width: 100%;
     align-items: center;
 }
 
@@ -17,7 +17,7 @@ header .title{
     font-size: 32px;
 }
 
-main{
+main.signin{
     display: flex;
     flex-direction: row;
     justify-self: center;
@@ -26,7 +26,7 @@ main{
     width: 100%;
 }
 
-main .form{
+main.signin .form{
     width: 556px;
     min-height: 561px;
     border-radius: 49px;
@@ -40,22 +40,22 @@ main .form{
     padding-right: 50px;
 }
 
-main .form .title{
+main.signin .form .title{
     font-size: 32px;
     font-weight: bold;
     color: black;
 }
 
-main .form span{
+main.signin .form span{
     color: #716E6E;
 }
 
 
-main .form .foot{
+main.signin .form .foot{
     height: 20%;
 }
 
-main .input{
+main.signin .input{
     border: none;
     border-bottom: solid 1px black;
     background-color: transparent;
@@ -65,21 +65,21 @@ main .input{
     margin-top: 30px;
 }
 
-main .foot{
+main.signin .foot{
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
-main .formBtn{
+main.signin .formBtn{
     border-radius: 10px;
     width: 360px;
     height: 50px;
 }
 
 
-main .select{
+main.signin .select{
     margin-top: 30px;
     border: none;
     border-bottom: solid 1px black;

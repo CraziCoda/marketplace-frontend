@@ -1,18 +1,21 @@
 import { ReactNode } from "react";
 import "./Signin.css";
+import { Link } from "react-router-dom";
+import env from "../../env";
+
 const Signin = () => {
 	return (
-		<div className="container">
-			<header>
+		<div className="container signin">
+			<header className="signin">
 				<div className="title">LENDERING</div>
 			</header>
-			<main>
+			<main className="signin">
 				<div className="form">
 					<div className="head">
 						<span className="title">Borrower | Lender Sign In </span>
 						<br />
 						<span>
-							If no account <a href="#">create account</a>
+							If no account <Link to="/register">create account</Link>
 						</span>
 					</div>
 					<div className="body">

@@ -1,8 +1,23 @@
+import { Cloudinary } from "@cloudinary/url-gen";
+import { AdvancedImage } from "@cloudinary/react";
+import { fill } from "@cloudinary/url-gen/actions/resize";
+
 const Card = () => {
+	const cld = new Cloudinary({
+		cloud: {
+			cloudName: "dljjxmrex",
+		},
+	});
+
+	const myImage = cld.image("sample");
+	myImage.resize(fill().width(230).height(90));
+
 	return (
 		<div style={style.card}>
 			<div style={style.top}>
-				<div style={style.image}></div>
+				<div style={style.image}>
+					<AdvancedImage cldImg={myImage} />
+				</div>
 			</div>
 			<div style={style.bottom}>
 				<div style={style.user}>B & L Saving</div>

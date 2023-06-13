@@ -1,9 +1,10 @@
+import { Link } from "react-router-dom";
 import InfoViewFill from "../components/InfoViewFilled";
 import InfoViewOutline from "../components/InfoViewOutline";
 import "./DashboardL.css";
 const DashboardL = () => {
 	return (
-		<div className="container">
+		<div className="container l">
 			{/* <br />
 			<InfoViewFill
 				bgColor="orange"
@@ -17,17 +18,17 @@ const DashboardL = () => {
 				value="3000 pts"
 			/> */}
 
-			<header>
+			<header className="l">
 				<span>LENDERING</span>
 			</header>
 
-			<main>
+			<main className="l">
 				<div className="design"></div>
 				<div className="figures">
 					<div className="ac">
-						<a href="#" className="actions">
+						<Link to="/feed/borrowers" className="actions">
 							Find Borrower
-						</a>
+						</Link>
 						<a href="#" className="actions">
 							Load Wallet
 						</a>

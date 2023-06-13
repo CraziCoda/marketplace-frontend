@@ -1,16 +1,19 @@
 import "./Home.css";
+import TheImage from "../assets/hero_img.gif";
+import { Link } from "react-router-dom";
+
 const Home = () => {
 	return (
-		<div className="container">
-			<header>
+		<div className="container home">
+			<header className="home">
 				<div className="title">LENDERING</div>
 				<div className="menu">
-					<a href="#">About</a>
-					<a href="#">Login</a>
-					<a href="#">Sign Up</a>
+					<Link to="/">About</Link>
+					<Link to="/login">Login</Link>
+					<Link to="/register">Sign Up</Link>
 				</div>
 			</header>
-			<main>
+			<main className="home">
 				<div className="text">
 					<span className="loud">Lend out,</span>
 					<br />
@@ -21,10 +24,16 @@ const Home = () => {
 					<br /> and make impact in someone’s life.
 					<br />
 					<br />
-					<Button text="Find Lender" type="primary" />
-					<Button text="Find Borrower" type="outline" />
+					<Link to="/feed/lenders">
+						<Button text="Find Lender" type="primary" />
+					</Link>
+					<Link to="/feed/borrowers">
+						<Button text="Find Borrower" type="outline" />
+					</Link>
 				</div>
-				<div className="image"></div>
+				<div className="image">
+					<img src={TheImage} alt="img" />
+				</div>
 			</main>
 			<footer></footer>
 		</div>

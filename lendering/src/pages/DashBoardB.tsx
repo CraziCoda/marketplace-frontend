@@ -1,27 +1,15 @@
+import { Link } from "react-router-dom";
 import InfoViewFill from "../components/InfoViewFilled";
 import InfoViewOutline from "../components/InfoViewOutline";
 import "./DashboardB.css";
 const DashboardB = () => {
 	return (
-		<div className="container">
-			{/* <br />
-			<InfoViewFill
-				bgColor="orange"
-				top="GHC 5000.00"
-				bottom="Your active something"
-			/>
-
-			<InfoViewOutline
-				main="Accumulated Score"
-				label="Interests"
-				value="3000 pts"
-			/> */}
-
-			<header>
+		<div className="container b">
+			<header className="b">
 				<span>LENDERING</span>
 			</header>
 
-			<main>
+			<main className="b">
 				<div className="design"></div>
 				<div className="figures">
 					<div className="stats">
@@ -45,12 +33,12 @@ const DashboardB = () => {
 					</div>
 
 					<div className="ac">
-						<a href="#" className="actions">
+						<Link to="/feed/lenders" className="actions">
 							Find Lender
-						</a>
-						<a href="#" className="actions">
+						</Link>
+						<Link to="#" className="actions">
 							Pay Back Loan
-						</a>
+						</Link>
 					</div>
 				</div>
 			</main>

@@ -1,24 +1,24 @@
-.container {
+.container.signup {
 	padding: 40px 30px;
 	width: 50%;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 }
-header {
+header.signup {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-
+	width: 100%;
 	align-items: center;
 }
 
-header .title {
+header.signup .title {
 	font-size: 32px;
 	margin-bottom: 20px;
 }
 
-main {
+main.signup {
 	display: flex;
 	flex-direction: row;
 	justify-self: center;
@@ -27,7 +27,7 @@ main {
 	width: 100%;
 }
 
-main .head {
+main.signup .head {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
@@ -35,7 +35,7 @@ main .head {
 	align-items: center;
 }
 
-main .form {
+main.signup .form {
 	width: 1210px;
 	min-height: 561px;
 	border-radius: 49px;
@@ -49,17 +49,17 @@ main .form {
 	padding-right: 50px;
 }
 
-main .form .title {
+main.signup .form .title {
 	font-size: 32px;
 	font-weight: bold;
 	color: black;
 }
 
-main .form span {
+main.signup .form span {
 	color: #716e6e;
 }
 
-main .form .body {
+main.signup .form .body {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
@@ -67,24 +67,24 @@ main .form .body {
 	width: 100%;
 }
 
-main .form .body > div {
+main.signup .form .body > div {
 	width: 50%;
 	padding: 40px;
 }
 
-main .form .body .two-fields {
+main.signup .form .body .two-fields {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
 }
 
-main .form .body .two-fields .divider {
+main.signup .form .body .two-fields .divider {
 	min-width: 10px;
 	min-height: 10px;
 }
 
-main .form .body .labelled {
+main.signup .form .body .labelled {
 	display: flex;
 	flex-direction: column;
 	/* align-items: center;
@@ -94,21 +94,21 @@ main .form .body .labelled {
     color: #716e6e;
 }
 
-main .form .body .labelled .divider {
+main.signup .form .body .labelled .divider {
 	min-width: 10px;
 	min-height: 10px;
 }
 
-main .form .body .labelled .input {
+main.signup .form .body .labelled .input {
 	margin-top: 0px;
 }
 
-main .form .foot {
+main.signup .form .foot {
 	height: 20%;
     margin-bottom: 20px;
 }
 
-main .input {
+main.signup .input {
 	border: none;
 	border-bottom: solid 1px black;
 	background-color: transparent;
@@ -118,20 +118,20 @@ main .input {
 	margin-top: 30px;
 }
 
-main .foot {
+main.signup .foot {
 	width: 100%;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 }
 
-main .formBtn {
+main.signup .formBtn {
 	border-radius: 10px;
 	width: 360px;
 	height: 50px;
 }
 
-main .select {
+main.signup .select {
 	margin-top: 30px;
 	border: none;
 	border-bottom: solid 1px black;

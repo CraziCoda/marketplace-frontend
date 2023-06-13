@@ -1,23 +1,24 @@
-.container {
+.container.feed {
 	padding: 40px 30px;
 	width: 50%;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 }
-header {
+header.feed {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
+    width: 100%;
 }
 
-header .title {
+header.feed .title {
 	font-size: 32px;
 	margin-bottom: 20px;
 }
 
-header .search{
+header.feed .search{
     background-color: #F0F0F0;
     border: none;
     width: 500px;
@@ -30,13 +31,13 @@ header .search{
     margin-bottom: 15px;
 }
 
-main{
+main.feed{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
-main > div{
+main.feed > div{
     margin: 10px;
 }

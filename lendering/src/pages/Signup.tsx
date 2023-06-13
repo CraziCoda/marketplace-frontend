@@ -1,48 +1,210 @@
-import { ReactNode } from "react";
+import { ReactEventHandler, ReactNode, useState } from "react";
 import "./Signup.css";
+import { Link } from "react-router-dom";
+import env from "../../env";
+
+interface UserI {
+	fname: string;
+	lname: string;
+	email: string;
+	password: string;
+	occupation: string;
+	company?: string;
+	tax_number: string;
+	account_type: "Borrower" | "Lender" | string;
+	contact: string;
+	ghana_card: FileList | null;
+	image: FileList | null;
+	kin: string;
+	kin_contact: string;
+	kin_ghana_card: FileList | null;
+	kin_image: FileList | null;
+	address: string;
+}
+type UserKeys =
+	| "fname"
+	| "lname"
+	| "email"
+	| "password"
+	| "occupation"
+	| "company"
+	| "tax_number"
+	| "contact"
+	| "kin"
+	| "kin_contact"
+	| "address";
+
+type FileKeys = "image" | "kin_ghana_card" | "kin_image" | "ghana_card";
+
 const Signup = () => {
+	const [formData, setFormData] = useState<UserI>({
+		fname: "",
+		lname: "",
+		email: "",
+		password: "",
+		occupation: "",
+		company: "",
+		tax_number: "",
+		account_type: "Borrower",
+		contact: "",
+		ghana_card: null,
+		image: null,
+		kin: "",
+		kin_contact: "",
+		kin_ghana_card: null,
+		kin_image: null,
+		address: "",
+	});
+
+	const [password, setPsw] = useState("");
+	const [cpassword, setcPsw] = useState("");
+
+	function changeValue(key: UserKeys, value: string) {
+		const data = { ...formData };
+		data[key] = value;
+		setFormData(data);
+	}
+
+	function changeAccountType(value: "Borrower" | "Lender" | string) {
+		const data = { ...formData };
+		data["account_type"] = value;
+		setFormData(data);
+		console.log(data);
+	}
+
+	function setPassword(type: "password" | "c_password", value: string) {
+		if (type == "password") {
+			setPsw(value);
+		} else {
+			setcPsw(value);
+		}
+	}
+
+	function addFile(key: FileKeys, files: FileList | null) {
+		const data = { ...formData };
+		data[key] = files;
+		setFormData(data);
+	}
+
+	function uploadFiles() {
+		const form = new FormData();
+		const keys: FileKeys[] = [
+			"image",
+			"kin_ghana_card",
+			"kin_image",
+			"ghana_card",
+		];
+		for (let i = 0; i < keys.length; i++) {
+			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+			// @ts-ignore
+			if (formData[keys[i]] !== null) form.append("file", formData[keys[i]][0]);
+			form.append("api_key", env.cloud_key);
+			form.append("signature", env.cloud_secret);
+			form.append("timestamp", String(new Date().getTime()));
+			form.append("folder", "lendering");
+		}
+	}
+
 	return (
-		<div className="container">
-			<header>
+		<div className="container signup">
+			<header className="signup">
 				<div className="title">LENDERING</div>
 			</header>
-			<main>
+			<main className="signup">
 				<div className="form">
 					<div className="head">
 						<span className="title">Borrower & Lender Sign Up</span>
 						<span>
-							If with an account <a href="#">Login account </a>
+							If with an account <Link to="/login">Login account </Link>
 						</span>
 					</div>
 					<div className="body">
 						<div className="info">
-							<Select>
+							<Select
+								onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+									changeAccountType(e.target.value)
+								}
+								value={formData.account_type}
+							>
 								<option value={"lender"}>Lender</option>
 								<option value={"borrower"}>Borrower</option>
 							</Select>
 
-							<Input type="email" placeholder="crazicoda@gmail.com" />
+							<Input
+								type="email"
+								placeholder="crazicoda@gmail.com"
+								onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+									changeValue("email", e.target.value)
+								}
+								value={formData.email}
+							/>
 							<div className="two-fields">
-								<Input type="text" placeholder="eg: Jeff" />
+								<Input
+									type="text"
+									placeholder="eg: Jeff"
+									onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+										changeValue("fname", e.target.value)
+									}
+									value={formData.fname}
+								/>
 								<div className="divider"></div>
-								<Input type="text" placeholder="eg: Sarpong" />
+								<Input
+									type="text"
+									placeholder="eg: Sarpong"
+									onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+										changeValue("lname", e.target.value)
+									}
+									value={formData.lname}
+								/>
 							</div>
 
 							<Input
 								type="text"
 								placeholder="eg: Plot 46 BLK G Kenyase , Kumasi, Ghana"
+								onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+									changeValue("address", e.target.value)
+								}
+								value={formData.address}
 							/>
 
 							<div className="two-fields">
-								<Input type="password" placeholder="Password" />
+								<Input
+									type="password"
+									placeholder="Password"
+									onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+										setPassword("password", e.target.value)
+									}
+									value={password}
+								/>
 								<div className="divider"></div>
-								<Input type="password" placeholder="Confirm Password" />
+								<Input
+									type="password"
+									placeholder="Confirm Password"
+									onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+										setPassword("c_password", e.target.value)
+									}
+									value={cpassword}
+								/>
 							</div>
 
 							<div className="two-fields">
-								<Input type="text" placeholder="Occupation" />
+								<Input
+									type="text"
+									placeholder="Occupation"
+									onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+										changeValue("occupation", e.target.value)
+									}
+									value={formData.occupation}
+								/>
 								<div className="divider"></div>
-								<Input type="text" placeholder="Company (opt)" />
+								<Input
+									type="text"
+									placeholder="Company (opt)"
+									onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+										changeValue("company", e.target.value)
+									}
+									value={formData.company}
+								/>
 							</div>
 
 							<div className="labelled">
@@ -51,40 +213,88 @@ const Signup = () => {
 								<Input type="file" />
 							</div>
 
-							<Input type="text" placeholder="Tin No. (eg: B994838493 " />
+							<Input
+								type="text"
+								placeholder="Tin No. (eg: B994838493 "
+								onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+									changeValue("tax_number", e.target.value)
+								}
+								value={formData.tax_number}
+							/>
 						</div>
 						<div className="verify">
 							<h4>Verification</h4>
 							<div className="labelled">
 								<label>Ghana Card: </label>
 								<div className="divider"></div>
-								<Input type="file" />
+								<Input
+									type="file"
+									onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+										addFile("ghana_card", e.target.files)
+									}
+								/>
 							</div>
 
 							<div className="labelled">
 								<label>Your Image: </label>
 								<div className="divider"></div>
-								<Input type="file" />
+								<Input
+									type="file"
+									onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+										addFile("image", e.target.files)
+									}
+								/>
 							</div>
 
-							<Input type="tel" placeholder="+233558371654" />
+							<Input
+								type="tel"
+								placeholder="+233558371654"
+								onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+									changeValue("contact", e.target.value)
+								}
+								value={formData.contact}
+							/>
 
 							<div className="two-fields">
-								<Input type="text" placeholder="Next of Kin" />
+								<Input
+									type="text"
+									placeholder="Next of Kin"
+									onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+										changeValue("kin", e.target.value)
+									}
+									value={formData.kin}
+								/>
 								<div className="divider"></div>
-								<Input type="text" placeholder="Next of Kin Contact" />
+								<Input
+									type="text"
+									placeholder="Next of Kin Contact"
+									onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+										changeValue("kin_contact", e.target.value)
+									}
+									value={formData.kin_contact}
+								/>
 							</div>
 
 							<div className="labelled">
 								<label>Next of Kin Ghana Card: </label>
 								<div className="divider"></div>
-								<Input type="file" />
+								<Input
+									type="file"
+									onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+										addFile("kin_ghana_card", e.target.files)
+									}
+								/>
 							</div>
 
 							<div className="labelled">
 								<label>Next of kin Image: </label>
 								<div className="divider"></div>
-								<Input type="file" />
+								<Input
+									type="file"
+									onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+										addFile("kin_image", e.target.files)
+									}
+								/>
 							</div>
 						</div>
 					</div>
@@ -118,6 +328,9 @@ const FormButton = (props: ButtonProps) => {
 interface InputProps {
 	placeholder?: string;
 	type?: React.HTMLInputTypeAttribute;
+	onChange?: ReactEventHandler;
+	value?: string | number | "Borrower" | "Lender";
+	required?: boolean;
 }
 
 const Input = (props: InputProps) => {
@@ -127,15 +340,24 @@ const Input = (props: InputProps) => {
 			className="input"
 			placeholder={props.placeholder}
 			accept="image/*"
+			onChange={props.onChange}
+			value={props.value}
+			required={props.required || true}
 		/>
 	);
 };
 
 interface SelectProps {
 	children: ReactNode;
+	onChange?: ReactEventHandler;
+	value?: string | number | "Borrower" | "Lender";
 }
 
 const Select = (props: SelectProps) => {
-	return <select className="select">{props.children}</select>;
+	return (
+		<select className="select" onChange={props.onChange} value={props.value}>
+			{props.children}
+		</select>
+	);
 };
 export default Signup;

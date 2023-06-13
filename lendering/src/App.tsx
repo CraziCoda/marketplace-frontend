@@ -1,3 +1,4 @@
+import { PropsWithChildren } from "react";
 import "./App.css";
 import Chat from "./pages/Chat";
 import DashboardB from "./pages/DashBoardB";
@@ -8,10 +9,11 @@ import Main from "./pages/Main";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 
-function App() {
+
+function App(props: PropsWithChildren) {
 	return (
 		<>
-			<Chat/>
+			{props.children}
 		</>
 	);
 }
