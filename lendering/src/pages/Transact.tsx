@@ -219,7 +219,7 @@ const Transact = () => {
 										el.accepted ? "Accepted" : <ActionButton text="cancel" onClick={()=>{cancel(el._id)}} />
 									}
 									{
-										el.proposer == to ? <ActionButton text="accept" onClick={()=>{accept(el._id)}}/> : ``
+										el.proposer == to && !el.accepted ? <ActionButton text="accept" onClick={()=>{accept(el._id)}}/> : ``
 									}
 									
 								</div>
@@ -232,19 +232,7 @@ const Transact = () => {
 	);
 };
 
-interface LabelProps {
-	label: string;
-	value: string;
-}
 
-const Label = (props: LabelProps) => {
-	return (
-		<div className="label">
-			<div className="left">{props.label}:</div>
-			<div className="right">{props.value}</div>
-		</div>
-	);
-};
 
 interface ActionButtonProps {
 	text: string;

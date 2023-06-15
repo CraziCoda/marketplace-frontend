@@ -12,6 +12,7 @@ import Chat from "./pages/Chat.tsx";
 import Feed from "./pages/Feed.tsx";
 import Profile from "./pages/Profile.tsx";
 import Transact from "./pages/Transact.tsx";
+import Me from "./pages/Me.tsx";
 
 const router = createBrowserRouter([
 	{
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
 	{
 		path: "/transact",
 		element: <Transact />,
+	},
+	{
+		path: "/me",
+		element: <Me />,
 	},
 ]);
 

@@ -1,5 +1,5 @@
 import { ReactEventHandler, useEffect, useState } from "react";
-import "./Profile.css";
+import "./Me.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -32,21 +32,93 @@ interface RatingI {
 	rate: number;
 }
 
-const Profile = () => {
+const Me = () => {
 	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 	//@ts-ignore
 	const [user, setUser] = useState<UserI>({});
 	const navigate = useNavigate();
 
 	async function findUser() {
-		const queryString = location.search;
-		const params = new URLSearchParams(queryString);
-		const id = params.get("id");
-		if (id == null) return navigate("/");
+		const token = localStorage.getItem("token");
 
-		const result = await axios.get(`http://localhost:4000/view?id=${id}`);
+		if (!token) {
+			alert("User not authenticated");
+			navigate("/login");
+		}
+
+		const headers = {
+			Authorization: `Bearer ${token}`,
+		};
+
+		const result = await axios.get(`http://localhost:4000/me`, { headers });
 		console.log(result.data);
 		setUser(result.data);
+	}
+
+	async function loadWallet() {
+		let amount = 0;
+		const a = prompt("Enter the amount: ");
+		if (a != null) amount = parseInt(a);
+
+		const token = localStorage.getItem("token");
+
+		if (!token) {
+			alert("User not authenticated");
+			navigate("/login");
+		}
+
+		const headers = {
+			Authorization: `Bearer ${token}`,
+		};
+		const response = await axios.post(
+			`http://localhost:4000/deposit`,
+			{
+				amount
+			},
+			{
+				headers: headers,
+			}
+		);
+
+		if (response.status == 200) {
+			alert(response.data.message);
+		} else {
+			alert("User not authenticated");
+			navigate("/login");
+		}
+	}
+
+	async function withdraw() {
+		let amount = 0;
+		const a = prompt("Enter the amount: ");
+		if (a != null) amount = parseInt(a);
+
+		const token = localStorage.getItem("token");
+
+		if (!token) {
+			alert("User not authenticated");
+			navigate("/login");
+		}
+
+		const headers = {
+			Authorization: `Bearer ${token}`,
+		};
+		const response = await axios.post(
+			`http://localhost:4000/withdraw`,
+			{
+				amount
+			},
+			{
+				headers: headers,
+			}
+		);
+
+		if (response.status == 200) {
+			alert(response.data.message);
+		} else {
+			alert("User not authenticated");
+			navigate("/login");
+		}
 	}
 
 	useEffect(() => {
@@ -55,9 +127,6 @@ const Profile = () => {
 		if (!user?.fname) findUser();
 	});
 
-	function openTransactions() {
-		navigate(`/transact?id=${user._id}`);
-	}
 	return (
 		<div className="container profile">
 			<header className="profile">
@@ -83,14 +152,8 @@ const Profile = () => {
 					</div>
 				</div>
 				<div className="actions">
-					<ActionButton
-						text="Chat"
-						onClick={() => {
-							navigate("/chat");
-						}}
-					/>
-					<ActionButton text="Transact" onClick={openTransactions} />
-					<ActionButton text="Click me" />
+					<ActionButton text="Load Wallet" onClick={loadWallet} />
+					<ActionButton text="Withdraw" onClick={withdraw} />
 				</div>
 			</main>
 		</div>
@@ -124,4 +187,4 @@ const ActionButton = (props: ActionButtonProps) => {
 	);
 };
 
-export default Profile;
+export default Me;
