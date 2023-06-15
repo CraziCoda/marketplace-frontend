@@ -10,6 +10,8 @@ import DashboardB from "./pages/DashBoardB.tsx";
 import DashboardL from "./pages/DashBoardL.tsx";
 import Chat from "./pages/Chat.tsx";
 import Feed from "./pages/Feed.tsx";
+import Profile from "./pages/Profile.tsx";
+import Transact from "./pages/Transact.tsx";
 
 const router = createBrowserRouter([
 	{
@@ -33,17 +35,26 @@ const router = createBrowserRouter([
 		path: "dashboard/borrower",
 		element: <DashboardB />,
 	},
-  {
+	{
 		path: "dashboard/lender",
 		element: <DashboardL />,
 	},
-  {
+	{
 		path: "chat",
 		element: <Chat />,
 	},
-  {
-		path: "feed/:type",
+	{
+		path: "feed",
 		element: <Feed />,
+	},
+
+	{
+		path: "/profile",
+		element: <Profile />,
+	},
+	{
+		path: "/transact",
+		element: <Transact />,
 	},
 ]);
 

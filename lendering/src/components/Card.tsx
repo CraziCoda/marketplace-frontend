@@ -1,33 +1,35 @@
-import { Cloudinary } from "@cloudinary/url-gen";
-import { AdvancedImage } from "@cloudinary/react";
-import { fill } from "@cloudinary/url-gen/actions/resize";
+import { useNavigate } from "react-router-dom";
 
-const Card = () => {
-	const cld = new Cloudinary({
-		cloud: {
-			cloudName: "dljjxmrex",
-		},
-	});
+interface CardProps {
+	image: string;
+	name: string;
+	id: string;
+	location: string;
+}
 
-	const myImage = cld.image("sample");
-	myImage.resize(fill().width(230).height(90));
+const Card = (props: CardProps) => {
+	const navigate = useNavigate();
 
+
+	function open(id: string){
+		navigate(`/profile?id=${id}`)
+	}
 	return (
 		<div style={style.card}>
 			<div style={style.top}>
 				<div style={style.image}>
-					<AdvancedImage cldImg={myImage} />
+					<img src={props.image} alt={props.name} style={style.img}/>
 				</div>
 			</div>
 			<div style={style.bottom}>
-				<div style={style.user}>B & L Saving</div>
+				<div style={style.user}>{props.name}</div>
 				<div style={style.desc}>
 					Small description very short. A brief bragging rights.
 				</div>
-				<div style={style.desc}>Kumasi, GHana</div>
+				<div style={style.desc}>{props.location}</div>
 				<div style={style.foot}>
 					<div style={style.rating}>3 star ratings</div>
-					<button style={style.button}>View</button>
+					<button style={style.button} onClick={()=>{open(props.id)}}>View</button>
 				</div>
 			</div>
 		</div>
@@ -60,6 +62,11 @@ const style: StyleObject = {
 		minWidth: "80%",
 		height: "80%",
 		margin: 10,
+	},
+	img: {
+		width:230,
+		height: 80,
+		objectFit: "cover",
 	},
 	name: {},
 	desc: {

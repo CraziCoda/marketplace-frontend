@@ -1,10 +1,9 @@
 interface InfoViewFillProps {
-	bgColor: string;
+	bgColor?: string;
 	top: string;
 	bottom: string;
 }
 const InfoViewFill = (props: InfoViewFillProps) => {
-	styles.container.backgroundColor = props.bgColor;
 	return (
 		<div style={styles.container}>
 			<div style={styles.top}>{props.top}</div>

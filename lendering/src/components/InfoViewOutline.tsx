@@ -1,17 +1,17 @@
 interface InfoViewOutlineProps {
-	main: string,
-	label: string,
-	value: string
+	main: string;
+	label: string;
+	value: string;
 }
 const InfoViewOutline = (props: InfoViewOutlineProps) => {
 	return (
 		<div style={styles.container}>
 			<div style={styles.top}>
-				<span style={styles.one}>Accumulated Score</span>
+				<span style={styles.one}>{props.main}</span>
 				<br></br>
-				<span style={styles.two}>Interests</span>
+				<span style={styles.two}>{props.label}</span>
 			</div>
-			<div style={styles.bottom}>3000 pts </div>
+			<div style={styles.bottom}>{props.value} </div>
 		</div>
 	);
 };
@@ -41,8 +41,8 @@ const styles: StyleObject = {
 		color: "#FF9B04",
 	},
 	bottom: {
-		fontWeight: 'bold',
-		fontSize: 24
+		fontWeight: "bold",
+		fontSize: 24,
 	},
 };
 

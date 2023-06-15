@@ -1,7 +1,6 @@
 import { ReactEventHandler, ReactNode, useState } from "react";
 import "./Signup.css";
-import { Link } from "react-router-dom";
-import env from "../../env";
+import { Link, useNavigate } from "react-router-dom";
 
 interface UserI {
 	fname: string;
@@ -11,7 +10,7 @@ interface UserI {
 	occupation: string;
 	company?: string;
 	tax_number: string;
-	account_type: "Borrower" | "Lender" | string;
+	account_type: "borrower" | "lender" | string;
 	contact: string;
 	ghana_card: FileList | null;
 	image: FileList | null;
@@ -21,6 +20,7 @@ interface UserI {
 	kin_image: FileList | null;
 	address: string;
 }
+
 type UserKeys =
 	| "fname"
 	| "lname"
@@ -33,8 +33,31 @@ type UserKeys =
 	| "kin"
 	| "kin_contact"
 	| "address";
+// | "image"
+// | "kin_ghana_card"
+// | "kin_image"
+// | "ghana_card";
 
 type FileKeys = "image" | "kin_ghana_card" | "kin_image" | "ghana_card";
+
+const fields = [
+	"fname",
+	"lname",
+	"email",
+	"password",
+	"occupation",
+	"company",
+	"tax_number",
+	"contact",
+	"kin",
+	"kin_contact",
+	"address",
+	"image",
+	"kin_ghana_card",
+	"kin_image",
+	"ghana_card",
+	"account_type",
+];
 
 const Signup = () => {
 	const [formData, setFormData] = useState<UserI>({
@@ -45,7 +68,7 @@ const Signup = () => {
 		occupation: "",
 		company: "",
 		tax_number: "",
-		account_type: "Borrower",
+		account_type: "lender",
 		contact: "",
 		ghana_card: null,
 		image: null,
@@ -59,13 +82,15 @@ const Signup = () => {
 	const [password, setPsw] = useState("");
 	const [cpassword, setcPsw] = useState("");
 
+	const navigate = useNavigate();
+
 	function changeValue(key: UserKeys, value: string) {
 		const data = { ...formData };
 		data[key] = value;
 		setFormData(data);
 	}
 
-	function changeAccountType(value: "Borrower" | "Lender" | string) {
+	function changeAccountType(value: "borrower" | "lender" | string) {
 		const data = { ...formData };
 		data["account_type"] = value;
 		setFormData(data);
@@ -86,22 +111,67 @@ const Signup = () => {
 		setFormData(data);
 	}
 
-	function uploadFiles() {
+	async function submitForm() {
 		const form = new FormData();
-		const keys: FileKeys[] = [
-			"image",
-			"kin_ghana_card",
-			"kin_image",
-			"ghana_card",
-		];
-		for (let i = 0; i < keys.length; i++) {
-			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-			// @ts-ignore
-			if (formData[keys[i]] !== null) form.append("file", formData[keys[i]][0]);
-			form.append("api_key", env.cloud_key);
-			form.append("signature", env.cloud_secret);
-			form.append("timestamp", String(new Date().getTime()));
-			form.append("folder", "lendering");
+		console.log(formData.account_type);
+		if (
+			formData.fname == "" ||
+			formData.lname == "" ||
+			formData.email == "" ||
+			//formData.password == "" ||
+			formData.occupation == "" ||
+			//formData.company == "" ||
+			formData.tax_number == "" ||
+			formData.contact == "" ||
+			formData.ghana_card == null ||
+			formData.image == null ||
+			formData.kin == "" ||
+			formData.kin_contact == "" ||
+			formData.kin_ghana_card == null ||
+			formData.kin_image == null ||
+			formData.address == "" ||
+			formData.account_type == undefined
+		) {
+			return alert("Fill all mandatory spaces");
+		}
+
+		if (password == cpassword) {
+			console.log("Success");
+			formData.password = password;
+			for (let i = 0; i < fields.length; i++) {
+				const key = fields[i];
+				if (key.includes("image") || key.includes("ghana_card")) {
+					// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+					//@ts-ignore comment
+					form.append(key, formData[key][0]);
+				} else {
+					// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+					//@ts-ignore comment
+					form.append(key, formData[key]);
+				}
+			}
+
+			fetch("http://localhost:4000/auth/register", {
+				method: "POST",
+				body: form,
+			})
+				.then(async (res) => {
+					const response = await res.json();
+					if(response?.status == 200){
+						alert("Your account has been successfully.\n You will receive an email once verified ")
+					}else{
+						alert(response.message)
+						
+					}
+
+					navigate("/login")
+
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		} else {
+			return alert("Passwords do not match");
 		}
 	}
 
@@ -299,7 +369,13 @@ const Signup = () => {
 						</div>
 					</div>
 					<div className="foot">
-						<FormButton text="Sign Up" type="primary" />
+						<FormButton
+							text="Sign Up"
+							type="primary"
+							onClick={() => {
+								submitForm();
+							}}
+						/>
 					</div>
 				</div>
 			</main>
@@ -312,6 +388,7 @@ const Signup = () => {
 interface ButtonProps {
 	text: string;
 	type: "primary" | "outline";
+	onClick?: ReactEventHandler;
 }
 
 const FormButton = (props: ButtonProps) => {
@@ -319,6 +396,7 @@ const FormButton = (props: ButtonProps) => {
 		<button
 			className={"formBtn " + props.type}
 			style={{ backgroundColor: "#0981D8" }}
+			onClick={props.onClick}
 		>
 			{props.text}
 		</button>
