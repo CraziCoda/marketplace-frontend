@@ -50,7 +50,7 @@ const Feed = () => {
 				Authorization: `Bearer ${token}`,
 			};
 
-			const response = await axios.get("http://localhost:4000/showcase", {
+			const response = await axios.get("http://localhost:4000/view", {
 				headers: headers,
 			});
 			if (response.status == 200) {

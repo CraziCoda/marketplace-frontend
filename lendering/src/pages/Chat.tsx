@@ -9,13 +9,7 @@ const Chat = () => {
                 <div className="board chat">
                     <div className="person">Jeff Sarpong</div>
                 </div>
-                <div className="panel chat">
-					<div className="view"></div>
-					<div className="message-bar">
-						<input type="text" placeholder="Enter messsage"/>
-						<button>Send</button>
-					</div>
-				</div>
+                <div className="panel chat">b</div>
             </main>
 		</div>
 	);

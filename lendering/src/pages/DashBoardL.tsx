@@ -5,7 +5,7 @@ import "./DashboardL.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 const DashboardL = () => {
-	const [data, setData] = useState({});
+	const [user, setUser] = useState({});
 	const navigate = useNavigate();
 	async function fetchData() {
 		try {
@@ -24,7 +24,7 @@ const DashboardL = () => {
 				headers,
 			});
 			console.log(response.data);
-			setData(response.data);
+			setUser(response.data);
 		} catch (error) {
 			console.error(error);
 		}
@@ -33,12 +33,8 @@ const DashboardL = () => {
 	useEffect(() => {
 		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		//@ts-ignore
-		if (data?.balance == 0) return;
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		//@ts-ignore
-		if (!data?.balance) fetchData();
+		if (!user?.fname) fetchData();
 	});
-
 	return (
 		<div className="container l">
 			{/* <br />
@@ -62,23 +58,21 @@ const DashboardL = () => {
 				<div className="design"></div>
 				<div className="figures">
 					<div className="ac">
-						<Link to="/feed" className="actions">
+						<Link to="/feed/borrowers" className="actions">
 							Find Borrower
 						</Link>
-						<Link to="/me" className="actions">
+						<a href="#" className="actions">
 							Load Wallet
-						</Link>
+						</a>
 						<a href="#" className="actions">
 							Run Ads
 						</a>
 					</div>
 					<div className="stats">
 						<InfoViewOutline
-							main="Revenue"
+							main="Accumulated Score"
 							label="Interests"
-							// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-							//@ts-ignore
-							value={`Ghc ${data.revenue}`}
+							value="3000 pts"
 						/>
 
 						<InfoViewOutline
@@ -89,10 +83,8 @@ const DashboardL = () => {
 
 						<InfoViewFill
 							bgColor="#0981D8"
-							// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-							//@ts-ignore
-							top={`GHc ${data?.balance}`}
-							bottom="Your active balance"
+							top="GHC 5000.00"
+							bottom="Your active something"
 						/>
 					</div>
 				</div>

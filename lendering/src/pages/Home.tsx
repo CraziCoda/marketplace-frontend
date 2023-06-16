@@ -24,10 +24,10 @@ const Home = () => {
 					<br /> and make impact in someone’s life.
 					<br />
 					<br />
-					<Link to="/feed">
+					<Link to="/feed/lenders">
 						<Button text="Find Lender" type="primary" />
 					</Link>
-					<Link to="/feed">
+					<Link to="/feed/borrowers">
 						<Button text="Find Borrower" type="outline" />
 					</Link>
 				</div>

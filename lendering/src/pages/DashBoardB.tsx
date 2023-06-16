@@ -66,7 +66,7 @@ const DashboardB = () => {
 					</div>
 
 					<div className="ac">
-						<Link to="/feed" className="actions">
+						<Link to="/feed/lenders" className="actions">
 							Find Lender
 						</Link>
 						<Link to="#" className="actions">

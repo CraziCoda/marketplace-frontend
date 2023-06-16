@@ -1,10 +1,10 @@
-import { ReactEventHandler, useEffect, useState } from "react";
+import { EventHandler, ReactEventHandler, useEffect, useState } from "react";
 import "./Profile.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 interface UserI {
-	_id?: string;
+    _id?: any,
 	fname: string;
 	lname: string;
 	email: string;
@@ -55,18 +55,16 @@ const Profile = () => {
 		if (!user?.fname) findUser();
 	});
 
-	function openTransactions() {
-		navigate(`/transact?id=${user._id}`);
-	}
+    function openTransactions(){
+        navigate(`/transact?id=${user._id}`)
+    }
 	return (
 		<div className="container profile">
 			<header className="profile">
 				<span>LENDERING</span>
 			</header>
 			<main className="profile">
-				<div className="image">
-					<img src={`http://localhost:4000/${user.image}`} />
-				</div>
+				<div className="image"></div>
 				<div className="desc">
 					<div>
 						<Label label="Name" value={user.fname + " " + user.lname} />
@@ -83,12 +81,7 @@ const Profile = () => {
 					</div>
 				</div>
 				<div className="actions">
-					<ActionButton
-						text="Chat"
-						onClick={() => {
-							navigate("/chat");
-						}}
-					/>
+					<ActionButton text="Chat" />
 					<ActionButton text="Transact" onClick={openTransactions} />
 					<ActionButton text="Click me" />
 				</div>
@@ -113,15 +106,11 @@ const Label = (props: LabelProps) => {
 
 interface ActionButtonProps {
 	text: string;
-	onClick?: ReactEventHandler;
+    onClick?: ReactEventHandler;
 }
 
 const ActionButton = (props: ActionButtonProps) => {
-	return (
-		<button className="actionBtn" onClick={props.onClick}>
-			{props.text}
-		</button>
-	);
+	return <button className="actionBtn" onClick={props.onClick}>{props.text}</button>;
 };
 
 export default Profile;

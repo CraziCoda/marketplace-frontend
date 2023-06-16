@@ -30,50 +30,33 @@ main.chat {
 	align-items: center;
 	justify-content: space-between;
 }
-main.chat > .chat {
-	height: 90%;
-	background-color: #f0f0f0;
-	border-radius: 50px;
-	padding-left: 20px;
-	padding-top: 20px;
+main.chat > .chat{
+    height: 90%;
+    background-color: #F0F0F0;
+    border-radius: 50px;
+    padding-left: 20px;
+    padding-top: 20px;
 }
 main.chat .board {
 	width: 20%;
 	padding: 0px;
-	padding-top: 50px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-main.chat .board .person {
-	width: 90%;
-	background-color: white;
-	height: 50px;
-	text-align: center;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-weight: bold;
-	border-radius: 20px;
+main.chat .board .person{
+    width: 90%;
+    background-color: white;
+    height: 50px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border-radius: 20px;
 }
 main.chat .panel {
 	width: 75%;
-}
-
-main.chat .panel .view{
-	height: 90%;
-}
-
-
-
-main.chat .panel .message-bar input {
-	background-color: white;
-	border: none;
-	border-radius: 20px;
-	height: 50px;
-	width: 85%;
-	padding-left: 20px;
-	color: black;
-	outline: none;
 }
