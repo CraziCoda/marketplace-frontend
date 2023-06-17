@@ -98,6 +98,7 @@ const Transact = () => {
 
 		if (response.status == 200) {
 			setFormData({ date: "", amount: 0, interest: 0 });
+			location.reload();
 		} else {
 			alert("User not authenticated");
 			navigate("/login");
@@ -157,6 +158,7 @@ const Transact = () => {
 
 		if (response.status == 200) {
 			console.log(response.data);
+			location.reload();
 		} else {
 			alert("User not authenticated");
 			navigate("/login");

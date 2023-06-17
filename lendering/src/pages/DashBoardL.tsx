@@ -95,6 +95,16 @@ const DashboardL = () => {
 							bottom="Your active balance"
 						/>
 					</div>
+
+					<div className="tables">
+						<table>
+							<tr>
+								<th>Hello H</th>
+								<th>Hello H</th>
+								<th>Hello H</th>
+							</tr>
+						</table>
+					</div>
 				</div>
 			</main>
 		</div>

@@ -5,7 +5,7 @@ import "./DashboardB.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 const DashboardB = () => {
-	const [user, setUser] = useState({});
+	const [data, setData] = useState({});
 	const navigate = useNavigate();
 	async function fetchData() {
 		try {
@@ -24,7 +24,7 @@ const DashboardB = () => {
 				headers,
 			});
 			console.log(response.data);
-			setUser(response.data);
+			setData(response.data);
 		} catch (error) {
 			console.error(error);
 		}
@@ -33,7 +33,10 @@ const DashboardB = () => {
 	useEffect(() => {
 		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		//@ts-ignore
-		if (!user?.fname) fetchData();
+		if (data?.balance == 0) return;
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		//@ts-ignore
+		if (!data?.balance) fetchData();
 	});
 
 	return (
@@ -48,20 +51,26 @@ const DashboardB = () => {
 					<div className="stats">
 						<InfoViewOutline
 							main="Accumulated Score"
-							label="Interests"
-							value="3000 pts"
+							label="Points"
+							// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+							//@ts-ignore
+							value={`${data.points}`}
 						/>
 
 						<InfoViewOutline
-							main="Relations"
-							label="Lender"
-							value="4"
+							main="Debt"
+							label="Amount owed"
+							// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+							//@ts-ignore
+							value={data.debt}
 						/>
 
 						<InfoViewFill
 							bgColor="orange"
-							top="GHC -5000.00"
-							bottom="Your active debt"
+							// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+							//@ts-ignore
+							top={data.balance}
+							bottom="Your active balance"
 						/>
 					</div>
 

@@ -30,43 +30,78 @@ main.chat {
 	align-items: center;
 	justify-content: space-between;
 }
-main.chat > .chat{
-    height: 90%;
-    background-color: #F0F0F0;
-    border-radius: 50px;
-    padding-left: 20px;
-    padding-top: 20px;
+main.chat > .chat {
+	height: 90%;
+	background-color: #f0f0f0;
+	border-radius: 50px;
+	padding-left: 20px;
+	padding-top: 20px;
 }
 main.chat .board {
 	width: 20%;
 	padding: 0px;
-    padding-top: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+	padding-top: 50px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
-main.chat .board .person{
-    width: 90%;
-    background-color: white;
-    height: 50px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    border-radius: 20px;
+main.chat .board .person {
+	width: 90%;
+	background-color: white;
+	height: 50px;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+	border-radius: 20px;
 }
 main.chat .panel {
 	width: 75%;
 }
 
-main.chat .panel .view{
+main.chat .panel .view {
 	height: 90%;
-	overflow-y: auto;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	
+}
+main.chat .panel .view .box {
+	/* min-height: fit-content; */
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	min-height:0;
+	flex: 1;
+	overflow: auto;
 }
 
-main.chat .panel .message-bar{
+
+main.chat .panel .view .message-box {
+	min-width: 100px;
+	min-height: 40px;
+	width: fit-content;
+	background-color: #fff;
+	box-shadow: 0 0 5px gray;
+	border-radius: 15px;
+	padding: 10px 10px;
+	margin: 10px 10px;
+	margin-right: 30px;
+}
+
+main.chat .panel .view .message-box.right {
+	align-self: flex-end;
+}
+
+main.chat .panel .view .message-box .date {
+	font-size: small;
+}
+
+main.chat .panel .message-bar {
 	width: 100%;
 	display: flex;
 	flex-direction: row;
@@ -84,20 +119,17 @@ main.chat .panel .message-bar input {
 	color: black;
 	outline: none;
 	box-shadow: 0px 0px 5px gray;
-
 }
 
-
-main.chat .panel .message-bar button
-{
+main.chat .panel .message-bar button {
 	background-color: #0981d8;
 	height: 52px;
 	box-shadow: 0px 0px 5px gray;
 }
-main.chat .panel .message-bar button:first-child{
+main.chat .panel .message-bar button:first-child {
 	border-radius: 20px 0 0 20px;
 }
 
-main.chat .panel .message-bar button:last-child{
-	border-radius:  0 20px 20px 0;
+main.chat .panel .message-bar button:last-child {
+	border-radius: 0 20px 20px 0;
 }

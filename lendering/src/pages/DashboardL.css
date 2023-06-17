@@ -67,3 +67,8 @@ main.l .figures .stats{
     justify-content: space-between;
     margin-top: 30px;
 }
+
+main.l .tables {
+    width: 100%;
+    background-color: red;
+}
