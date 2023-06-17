@@ -36,6 +36,7 @@ main.profile .image {
 	width: 100%;
 	background-color: #f0f0f0;
 	display: flex;
+    justify-content: center;
 }
 
 main.profile .desc {

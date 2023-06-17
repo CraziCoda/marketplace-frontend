@@ -28,7 +28,7 @@ const Card = (props: CardProps) => {
 				</div>
 				<div style={style.desc}>{props.location}</div>
 				<div style={style.foot}>
-					<div style={style.rating}>3 star ratings</div>
+					<div style={style.rating}>No ratings</div>
 					<button style={style.button} onClick={()=>{open(props.id)}}>View</button>
 				</div>
 			</div>

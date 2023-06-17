@@ -1,6 +1,6 @@
 import { ReactEventHandler, useEffect, useState } from "react";
 import "./Transact.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 type RequestKeys = "amount" | "interest" | "date";
@@ -118,7 +118,7 @@ const Transact = () => {
 		const response = await axios.post(
 			"http://localhost:4000/cancel",
 			{
-				id
+				id,
 			},
 			{
 				headers,
@@ -126,8 +126,8 @@ const Transact = () => {
 		);
 
 		if (response.status == 200) {
-			console.log(response.data)
-			location.reload()
+			console.log(response.data);
+			location.reload();
 		} else {
 			alert("User not authenticated");
 			navigate("/login");
@@ -148,7 +148,7 @@ const Transact = () => {
 		const response = await axios.post(
 			"http://localhost:4000/accept",
 			{
-				id
+				id,
 			},
 			{
 				headers,
@@ -156,7 +156,7 @@ const Transact = () => {
 		);
 
 		if (response.status == 200) {
-			console.log(response.data)
+			console.log(response.data);
 		} else {
 			alert("User not authenticated");
 			navigate("/login");
@@ -169,7 +169,9 @@ const Transact = () => {
 	return (
 		<div className="container profile">
 			<header className="transact">
-				<span>LENDERING</span>
+				<span>
+					<Link to="/Feed">LENDERING</Link>
+				</span>
 			</header>
 			<main className="transact">
 				<div className="request">
@@ -215,33 +217,36 @@ const Transact = () => {
 									</div>
 								</div>
 								<div className="btns">
-									{
-										el.accepted ? "Accepted" : <ActionButton text="cancel" onClick={()=>{cancel(el._id)}} />
-									}
-									{
-										el.proposer == to ? <ActionButton text="accept" onClick={()=>{accept(el._id)}}/> : ``
-									}
-									
+									{el.accepted ? (
+										el.lender == to ? (
+											<ActionButton text="Pay Back" />
+										) : (
+											"Accepted"
+										)
+									) : (
+										<ActionButton
+											text="cancel"
+											onClick={() => {
+												cancel(el._id);
+											}}
+										/>
+									)}
+									{el.proposer == to && !el.accepted ? (
+										<ActionButton
+											text="accept"
+											onClick={() => {
+												accept(el._id);
+											}}
+										/>
+									) : (
+										``
+									)}
 								</div>
 							</div>
 						);
 					})}
 				</div>
 			</main>
-		</div>
-	);
-};
-
-interface LabelProps {
-	label: string;
-	value: string;
-}
-
-const Label = (props: LabelProps) => {
-	return (
-		<div className="label">
-			<div className="left">{props.label}:</div>
-			<div className="right">{props.value}</div>
 		</div>
 	);
 };
