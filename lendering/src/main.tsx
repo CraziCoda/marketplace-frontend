@@ -13,6 +13,8 @@ import Feed from "./pages/Feed.tsx";
 import Profile from "./pages/Profile.tsx";
 import Transact from "./pages/Transact.tsx";
 import Me from "./pages/Me.tsx";
+import Admin from "./pages/Admin.tsx";
+import AdminView from "./pages/AdminView.tsx";
 
 const router = createBrowserRouter([
 	{
@@ -60,6 +62,16 @@ const router = createBrowserRouter([
 	{
 		path: "/me",
 		element: <Me />,
+	},
+
+	{
+		path: "/admin",
+		element: <Admin />,
+	},
+
+	{
+		path: "/adminview",
+		element: <AdminView />,
 	},
 ]);
 

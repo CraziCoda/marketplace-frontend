@@ -1,0 +1,103 @@
+.container.adminview {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+header.adminview {
+	width: 100%;
+	box-shadow: 0px 2px 2px #d4d2d2;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 10%;
+}
+
+header.adminview span {
+	width: 50%;
+	color: #0981d8;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+main.adminview {
+	width: 50%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+}
+
+main.adminview .image {
+	height: 40%;
+	width: 100%;
+	background-color: #f0f0f0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+main.adminview .img-type {
+	font-size: larger;
+	font-weight: bold;
+	align-self: center;
+}
+
+main.adminview .switch{
+    align-self: center;
+}
+
+main.adminview .image img {
+	object-fit: cover;
+	height: 100%;
+}
+
+main.adminview .desc {
+	display: flex;
+	flex-direction: row;
+}
+
+main.adminview .desc > div {
+	width: 100%;
+}
+
+main.adminview .desc .label {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-top: 20px;
+}
+
+main.adminview .desc .label .left {
+	color: #0981d8;
+	font-size: 18px;
+	font-weight: bolder;
+}
+
+main.adminview .desc .label .right {
+	margin-left: 10px;
+}
+
+main.adminview .actions {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+
+main.adminview .actions .actionBtn {
+	width: 200px;
+	background-color: #0981d8;
+	font-weight: bold;
+}
+
+main.adminview .actionBtn {
+	width: 100px;
+	background-color: #0981d8;
+	font-weight: bold;
+	
+}
