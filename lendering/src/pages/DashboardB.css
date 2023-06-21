@@ -67,3 +67,38 @@ main.b .figures .stats{
     margin-top: 30px;
     margin-bottom: 30px;
 }
+
+main.b .tables {
+	width: 100%;
+	margin-top: 30px;
+	height: 70%;
+}
+
+main.b .tables table {
+	width: 100%;
+	height: 100%;
+	overflow-y: scroll;
+}
+
+main.b .tables tr {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+main.b .tables table thead tr:first-child {
+	border-bottom: 1px solid black;
+}
+
+main.b .tables table tr > * {
+	width: 33%;
+}
+
+main.b .tables tr > td {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	height: 50px;
+	cursor: pointer;
+}

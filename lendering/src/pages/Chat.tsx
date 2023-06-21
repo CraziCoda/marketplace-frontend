@@ -120,7 +120,7 @@ const Chat = () => {
 			</header>
 			<main className="chat">
 				<div className="board chat">
-					<div className="person">Jeff Sarpong</div>
+					{/* <div className="person">Jeff Sarpong</div> */}
 				</div>
 				<div className="panel chat">
 					<div className="view">

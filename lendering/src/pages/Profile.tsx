@@ -94,7 +94,7 @@ const Profile = () => {
 						}}
 					/>
 					<ActionButton text="Transact" onClick={openTransactions} />
-					<ActionButton text="Click me" />
+					{/* <ActionButton text="Click me" /> */}
 				</div>
 			</main>
 		</div>
