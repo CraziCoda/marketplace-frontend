@@ -11,7 +11,7 @@ interface UserI {
 
 type UserKeys = "username" | "password";
 
-const fields = ["username", "password", "account_type"];
+// const fields = ["username", "password", "account_type"];
 
 const Signin = () => {
 	const [formData, setFormData] = useState<UserI>({
@@ -28,15 +28,14 @@ const Signin = () => {
 		setFormData(data);
 	}
 
-	function changeAccountType(value: "borrower" | "lender") {
-		const data = { ...formData };
-		data["account_type"] = value;
-		setFormData(data);
-		console.log(data);
-	}
+	// function changeAccountType(value: "borrower" | "lender") {
+	// 	const data = { ...formData };
+	// 	data["account_type"] = value;
+	// 	setFormData(data);
+	// 	console.log(data);
+	// }
 
 	async function submitForm() {
-		const form = new FormData();
 		if (
 			formData.username == "" ||
 			formData.password == "" ||
@@ -96,7 +95,7 @@ const Signin = () => {
 							}
 							value={formData.username}
 						/>
-						<Select
+						{/* <Select
 							onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
 								// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 								//@ts-ignore comment
@@ -106,7 +105,7 @@ const Signin = () => {
 						>
 							<option value={"lender"}>Lender</option>
 							<option value={"borrower"}>Borrower</option>
-						</Select>
+						</Select> */}
 						<Input
 							type="password"
 							placeholder="Password"
@@ -173,17 +172,17 @@ const Input = (props: InputProps) => {
 	);
 };
 
-interface SelectProps {
-	children: ReactNode;
-	onChange?: ReactEventHandler;
-	value?: string | number | "Borrower" | "Lender";
-}
+// interface SelectProps {
+// 	children: ReactNode;
+// 	onChange?: ReactEventHandler;
+// 	value?: string | number | "Borrower" | "Lender";
+// }
 
-const Select = (props: SelectProps) => {
-	return (
-		<select className="select" onChange={props.onChange} value={props.value}>
-			{props.children}
-		</select>
-	);
-};
+// const Select = (props: SelectProps) => {
+// 	return (
+// 		<select className="select" onChange={props.onChange} value={props.value}>
+// 			{props.children}
+// 		</select>
+// 	);
+// };
 export default Signin;

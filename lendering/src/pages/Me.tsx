@@ -134,21 +134,21 @@ const Me = () => {
 			</header>
 			<main className="profile">
 				<div className="image">
-					<img src={`http://localhost:4000/${user.image}`} />
+					<img src={`http://localhost:4000/${user?.image}`} />
 				</div>
 				<div className="desc">
 					<div>
-						<Label label="Name" value={user.fname + " " + user.lname} />
-						<Label label="Occupation" value={user.occupation} />
-						<Label label="Account Type" value={user.account_type} />
+						<Label label="Name" value={user?.fname + " " + user?.lname} />
+						<Label label="Occupation" value={user?.occupation} />
+						<Label label="Account Type" value={user?.account_type} />
 						<Label label="Rating" value="Not Rated" />
-						<Label label="Contact" value={user.contact} />
-						<Label label="Location" value={user.address} />
-						<Label label="Company" value={user.company || "Not Available"} />
+						<Label label="Contact" value={user?.contact} />
+						<Label label="Location" value={user?.address} />
+						<Label label="Company" value={user?.company || "Not Available"} />
 					</div>
 					<div>
-						<Label label="Verifed" value={user.verified ? "Yes" : "No"} />
-						<Label label="Points" value={user.points} />
+						<Label label="Verifed" value={user?.verified ? "Yes" : "No"} />
+						<Label label="Points" value={user?.points} />
 					</div>
 				</div>
 				<div className="actions">

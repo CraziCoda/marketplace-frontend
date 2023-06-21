@@ -32,11 +32,18 @@ interface RatingI {
 	rate: number;
 }
 
+interface ImagesI {
+	type: string;
+	url: string;
+}
+
 const AdminView = () => {
 	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 	//@ts-ignore
 	const [user, setUser] = useState<UserI>({});
 	const [userID, setID] = useState("");
+	const [images, setImages] = useState<ImagesI[]>([]);
+	const [currentImage, setCurrentImage] = useState(0);
 	const navigate = useNavigate();
 
 	async function findUser() {
@@ -47,8 +54,40 @@ const AdminView = () => {
 
 		const result = await axios.get(`http://localhost:4000/view?id=${id}`);
 		setID(id);
-		console.log(result.data);
 		setUser(result.data);
+
+		const keys = [
+			"User Image",
+			"Ghana Card",
+			"Next of Kin Image",
+			"Next of Kin Ghana",
+		];
+
+		const keysO = ["image", "ghana_card", "kin_image", "kin_ghana_card"];
+
+		const img_arr = [];
+
+		for (let i = 0; i < keys.length; i++) {
+			const img = {
+				type: keys[i],
+				url: result.data[keysO[i]],
+			};
+
+			img_arr.push(img);
+		}
+
+		setImages(img_arr);
+		console.log(img_arr);
+
+		console.log(result.data);
+	}
+
+	function nextImage() {
+		if (currentImage >= images.length - 1) {
+			return setCurrentImage(0);
+		}
+
+		setCurrentImage(currentImage + 1);
 	}
 
 	useEffect(() => {
@@ -57,9 +96,6 @@ const AdminView = () => {
 		if (!user?.fname) findUser();
 	});
 
-	function openTransactions() {
-		navigate(`/transact?id=${user._id}`);
-	}
 	return (
 		<div className="container adminview">
 			<header className="adminview">
@@ -68,12 +104,12 @@ const AdminView = () => {
 				</span>
 			</header>
 			<main className="adminview">
-				<div className="img-type">User Image</div>
+				<div className="img-type">{images[currentImage]?.type}</div>
 				<div className="image">
-					<img src={`http://localhost:4000/${user.image}`} />
+					<img src={`http://localhost:4000/${images[currentImage]?.url}`} />
 				</div>
 				<div className="switch">
-					<ActionButton text="next" />
+					<ActionButton text="next" onClick={nextImage} />
 				</div>
 				<div className="desc">
 					<div>
@@ -93,11 +129,28 @@ const AdminView = () => {
 				<div className="actions">
 					<ActionButton
 						text="Verify"
-						onClick={() => {
-							navigate(`/chat?id=${userID}`);
+						onClick={async () => {
+							const token = localStorage.getItem("token");
+
+							if (!token) {
+								alert("User not authenticated");
+								navigate("/login");
+							}
+
+							const headers = {
+								Authorization: `Bearer ${token}`,
+							};
+
+							const result = await axios.get(
+								`http://localhost:4000/verify?id=${userID}`,
+								{ headers }
+							);
+
+							setUser(result.data);
 						}}
+						disabled={user.verified}
 					/>
-					<ActionButton text="Promote" onClick={openTransactions} />
+					<ActionButton text="Promote" />
 					<ActionButton text="Suspend" />
 				</div>
 			</main>
@@ -122,11 +175,16 @@ const Label = (props: LabelProps) => {
 interface ActionButtonProps {
 	text: string;
 	onClick?: ReactEventHandler;
+	disabled?: boolean;
 }
 
 const ActionButton = (props: ActionButtonProps) => {
 	return (
-		<button className="actionBtn" onClick={props.onClick}>
+		<button
+			className="actionBtn"
+			onClick={props.onClick}
+			disabled={props.disabled}
+		>
 			{props.text}
 		</button>
 	);

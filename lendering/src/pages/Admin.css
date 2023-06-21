@@ -14,15 +14,14 @@ header.admin {
 	align-items: center;
 	justify-content: center;
 	height: 10%;
-   
 }
 
-header.admin > div{
-    width: 50%;
-    display: flex;
+header.admin > div {
+	width: 50%;
+	display: flex;
 	flex-direction: row;
 	align-items: center;
-    justify-content: space-between;
+	justify-content: space-between;
 }
 
 header.admin span {
@@ -37,14 +36,13 @@ main.admin {
 	justify-content: flex-start;
 	align-items: center;
 	width: 100%;
-    height: 90%;
-    overflow-y: auto;
+	height: 90%;
+	overflow-y: auto;
 }
 
 main.admin .label {
 	font-size: 25px;
 	font-weight: bold;
-
 }
 
 main.admin .user {
@@ -56,17 +54,44 @@ main.admin .user {
 	align-items: center;
 	justify-content: space-between;
 	padding: 0 20px;
-    border-radius: 5px;
-    margin: 5px 0;
+	border-radius: 5px;
+	margin: 5px 0;
 }
 
-main.admin .user .name{
-    font-weight: bolder;
-    font-size: 20px;
+main.admin .user .name {
+	font-weight: bolder;
+	font-size: 20px;
+	width: 20%;
 }
 
 main.admin .user .action .actionBtn {
 	width: 100px;
+	background-color: #0981d8;
+	font-weight: bold;
+}
+
+main.admin .input {
+	border: none;
+	border-bottom: solid 1px black;
+	background-color: transparent;
+	color: black;
+	outline: none;
+	width: 100%;
+	margin-top: 30px;
+}
+
+main.admin .request {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+main.admin .request .actionBtn {
+	margin-top: 20px;
+	width: 200px;
 	background-color: #0981d8;
 	font-weight: bold;
 }

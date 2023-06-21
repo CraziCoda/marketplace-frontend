@@ -78,7 +78,34 @@ const DashboardB = () => {
 						<Link to="/feed" className="actions">
 							Find Lender
 						</Link>
-						<Link to="#" className="actions">
+						<Link
+							to="#"
+							className="actions"
+							onClick={async () => {
+								const token = localStorage.getItem("token");
+
+								if (!token) {
+									alert("User not authenticated");
+									navigate("/login");
+								}
+
+								const headers = {
+									Authorization: `Bearer ${token}`,
+								};
+
+								const response = await axios.post(
+									"http://localhost:4000/payback",
+									{
+										
+									},
+									{
+										headers,
+									}
+								);
+
+								console.log(response);
+							}}
+						>
 							Pay Back Loan
 						</Link>
 					</div>
