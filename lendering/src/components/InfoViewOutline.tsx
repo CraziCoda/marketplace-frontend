@@ -7,11 +7,10 @@ const InfoViewOutline = (props: InfoViewOutlineProps) => {
 	return (
 		<div style={styles.container}>
 			<div style={styles.top}>
-				<span style={styles.one}>{props.main}</span>
-				<br></br>
+				<h1 style={styles.one}>{props.main}</h1>
 				<span style={styles.two}>{props.label}</span>
 			</div>
-			<div style={styles.bottom}>{props.value} </div>
+			<div style={styles.bottom}>{props.value}</div>
 		</div>
 	);
 };
@@ -22,16 +21,19 @@ interface StyleObject {
 
 const styles: StyleObject = {
 	container: {
+		display: 'flex',
+		flexDirection: 'column',
 		width: 250,
 		height: 120,
 		backgroundColor: "transparent",
-		borderRadius: 40,
-		padding: "30px 30px",
+		borderRadius: 20,
+		padding: "1em",
 		color: "black",
 		border: "solid 1px #0981D8",
 	},
 	top: {
-		marginBottom: 35,
+		display: 'flex',
+		flexDirection: 'column'
 	},
 	one: {
 		color: "#2E3193",

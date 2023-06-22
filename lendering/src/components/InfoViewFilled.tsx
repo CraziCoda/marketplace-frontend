@@ -6,7 +6,7 @@ interface InfoViewFillProps {
 const InfoViewFill = (props: InfoViewFillProps) => {
 	return (
 		<div style={styles.container}>
-			<div style={styles.top}>{props.top}</div>
+			<h1 style={styles.top}>{props.top}</h1>
 			<div>{props.bottom}</div>
 		</div>
 	);
@@ -21,14 +21,16 @@ const styles: StyleObject = {
 		width: 250,
 		height: 120,
 		backgroundColor: "red",
-		borderRadius: 40,
-		padding: "30px 30px",
+		borderRadius: 20,
+		padding: '1em',
+		display: "flex",
+		flexDirection: 'column',
+
 		color: "white",
 	},
 	top: {
 		fontSize: 32,
 		fontWeight: "bolder",
-		marginBottom: 55,
 	},
 };
 

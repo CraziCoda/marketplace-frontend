@@ -87,7 +87,8 @@ const DashboardL = () => {
 				</div>
 			</header>
 
-			<main className="l">
+			<main className="main_content l">
+				<div className="main_area">
 				<div className="design"></div>
 				<div className="figures">
 					<div className="ac">
@@ -169,6 +170,7 @@ const DashboardL = () => {
 							</tbody>
 						</table>
 					</div>
+				</div>
 				</div>
 			</main>
 		</div>

@@ -1,8 +1,9 @@
+
 .container.l {
 	display: flex;
 	flex-direction: column;
-	width: 100%;
 	align-items: center;
+	flex: 1;
 }
 
 header.l {
@@ -32,46 +33,61 @@ header.l span {
 main.l {
 	display: flex;
 	flex-direction: row;
-	height: 90%;
-	width: 70%;
+	height: 100%;
+	flex: 1;
 	align-items: center;
+	width: 100%;
+}
+
+/* content */
+.main_content.l{
+	display: flex;
+	height: 100%;
+	padding: 0 5em;
+}
+
+.main_area{
+	display: flex;
+	flex: 1;
+	height: 100%;
+	gap: 1em;
+	padding: 2em;
 }
 
 main.l .design {
-	height: 90%;
-	width: 10%;
+	border-radius: 1em;
+	height: inherit;
+	width: 10rem;
 	background-color: #0981d8;
-	border-radius: 100px;
-	margin-right: 100px;
 }
 
 main.l .figures {
 	display: flex;
 	flex-direction: column;
-	height: 90%;
-	padding-top: 50px;
-	width: 90%;
+	flex: 1;
+	padding: 1em;
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 main.l .figures .ac {
 	display: flex;
 	flex-direction: row;
+	padding: 1em;
+	gap: 1em;
 }
 
 main.l .figures .ac .actions {
 	background-color: #0981d8;
 	color: white;
-	margin-right: 10px;
-	width: 150px;
 	text-align: center;
-	border-radius: 20px;
+	padding: .5em;
 }
 
 main.l .figures .stats {
 	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	margin-top: 30px;
+	gap: 2em;
+	justify-content: center;
+	padding: 1em;
 }
 
 main.l .tables {
