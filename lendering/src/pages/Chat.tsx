@@ -25,7 +25,7 @@ const Chat = () => {
 			};
 
 			const result = await axios.get(`http://localhost:4000/me`, { headers });
-			setUser(result.data._id);
+			setUser(result.data?._id);
 
 			localStorage.setItem("chat_id", result.data._id);
 
@@ -159,7 +159,16 @@ const Chat = () => {
 						</div>
 					</div>
 					<div className="message-bar">
-						<button>Transact</button>
+						<button
+							onClick={() => {
+								const queryString = location.search;
+								const params = new URLSearchParams(queryString);
+								const id = params.get("id");
+								navigate(`/transact?id=${id}`);
+							}}
+						>
+							Transact
+						</button>
 						<input
 							type="text"
 							value={msg}

@@ -73,7 +73,7 @@ const Me = () => {
 		const response = await axios.post(
 			`http://localhost:4000/deposit`,
 			{
-				amount
+				amount,
 			},
 			{
 				headers: headers,
@@ -106,7 +106,7 @@ const Me = () => {
 		const response = await axios.post(
 			`http://localhost:4000/withdraw`,
 			{
-				amount
+				amount,
 			},
 			{
 				headers: headers,
@@ -130,7 +130,22 @@ const Me = () => {
 	return (
 		<div className="container profile">
 			<header className="profile">
-				<span><Link to="/Feed">LENDERING</Link></span>
+				<div>
+					<span>
+						<Link to="/Feed">LENDERING</Link>
+					</span>
+					<span>
+						<a
+							href=""
+							onClick={() => {
+								localStorage.removeItem("token");
+								navigate("/login");
+							}}
+						>
+							Logout
+						</a>
+					</span>
+				</div>
 			</header>
 			<main className="profile">
 				<div className="image">

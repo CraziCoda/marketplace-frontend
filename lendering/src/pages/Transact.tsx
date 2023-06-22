@@ -82,6 +82,29 @@ const Transact = () => {
 		const headers = {
 			Authorization: `Bearer ${token}`,
 		};
+
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		//@ts-ignore
+		if (formData?.interest < 0 || formData?.amount < 0) {
+			return alert("Invalid inputs");
+		}
+
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		//@ts-ignore
+		if (new Date(formData.date) < new Date()) {
+			alert("Date is past the current time");
+			return;
+		}
+
+		if (
+			formData.interest == 0 ||
+			formData.amount == 0 ||
+			formData.amount == undefined ||
+			formData.interest == undefined ||
+			formData.date == ""
+		) {
+			return alert("Invalid inputs");
+		}
 		const response = await axios.post(
 			"http://localhost:4000/propose",
 			{
@@ -209,71 +232,71 @@ const Transact = () => {
 				<div className="action">
 					<div className="label"> Offers: </div>
 					{transactions.map((el) => {
-							return (
-								<div className="offer" key={el._id}>
-									<div className="terms">
-										<div className="amount">GHc {el?.amount}</div>
-										<div className="interest">Interest: {el?.interest}%</div>
-										<div className="date">
-											{new Date(el.due_date).toLocaleString()}
-										</div>
-									</div>
-									<div className="btns">
-										{el.accepted ? (
-											el.lender == to ? (
-												<ActionButton
-													text="Pay Back"
-													onClick={async () => {
-														const token = localStorage.getItem("token");
-
-														if (!token) {
-															alert("User not authenticated");
-															navigate("/login");
-														}
-
-														const headers = {
-															Authorization: `Bearer ${token}`,
-														};
-
-														const response = await axios.post(
-															`http://localhost:4000/payback?id=${el._id}`,
-															{},
-															{
-																headers,
-															}
-														);
-														if (response.data.status == 200) {
-															return setTransactions(response.data.result);
-														}
-														return alert(response.data.message);
-
-														console.log(response);
-													}}
-												/>
-											) : (
-												"Accepted"
-											)
-										) : (
-											<ActionButton
-												text="cancel"
-												onClick={() => {
-													cancel(el._id);
-												}}
-											/>
-										)}
-										{el.proposer == to && !el.accepted ? (
-											<ActionButton
-												text="accept"
-												onClick={() => {
-													accept(el._id);
-												}}
-											/>
-										) : (
-											``
-										)}
+						return (
+							<div className="offer" key={el._id}>
+								<div className="terms">
+									<div className="amount">GHc {el?.amount}</div>
+									<div className="interest">Interest: {el?.interest}%</div>
+									<div className="date">
+										{new Date(el.due_date).toLocaleString()}
 									</div>
 								</div>
-							);
+								<div className="btns">
+									{el.accepted ? (
+										el.lender == to ? (
+											<ActionButton
+												text="Pay Back"
+												onClick={async () => {
+													const token = localStorage.getItem("token");
+
+													if (!token) {
+														alert("User not authenticated");
+														navigate("/login");
+													}
+
+													const headers = {
+														Authorization: `Bearer ${token}`,
+													};
+
+													const response = await axios.post(
+														`http://localhost:4000/payback?id=${el._id}`,
+														{},
+														{
+															headers,
+														}
+													);
+													if (response.data.status == 200) {
+														return setTransactions(response.data.result);
+													}
+													return alert(response.data.message);
+
+													console.log(response);
+												}}
+											/>
+										) : (
+											"Accepted"
+										)
+									) : (
+										<ActionButton
+											text="cancel"
+											onClick={() => {
+												cancel(el._id);
+											}}
+										/>
+									)}
+									{el.proposer == to && !el.accepted ? (
+										<ActionButton
+											text="accept"
+											onClick={() => {
+												accept(el._id);
+											}}
+										/>
+									) : (
+										``
+									)}
+								</div>
+							</div>
+						);
 					})}
 				</div>
 			</main>

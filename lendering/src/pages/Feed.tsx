@@ -3,6 +3,7 @@ import Card from "../components/Card";
 import "./Feed.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 interface UserI {
 	_id: string;
@@ -35,6 +36,7 @@ interface RatingI {
 
 const Feed = () => {
 	const [items, setItems] = useState<UserI[]>([]);
+	const [searchTerm, setSearchTerm] = useState("");
 	const navigate = useNavigate();
 
 	async function fetchData() {
@@ -73,19 +75,45 @@ const Feed = () => {
 			<header className="feed">
 				<div className="title">Find {items[0]?.account_type || ""}</div>
 				<div>
-					<input type="text" className="search" placeholder="Find a Lender" />
+					<span>
+						<Link
+							to={`${
+								items[0]?.account_type == "borrower"
+									? "/dashboard/lender"
+									: "/dashboard/borrower"
+							}`}
+						>
+							Dashboard
+						</Link>{" "}
+					</span>
+					<input
+						type="text"
+						className="search"
+						placeholder="Find a Lender"
+						onChange={(e) => {
+							setSearchTerm(e.target.value);
+						}}
+						value={searchTerm}
+					/>
 				</div>
 			</header>
 			<main className="feed">
-				{items.map((item) => (
-					<Card
-						key={item._id}
-						id={item._id}
-						name={item.fname + " " + item.lname}
-						image={"http://localhost:4000/" + item.image}
-						location={item.address}
-					/>
-				))}
+				{items.map((item) => {
+					if (searchTerm !== "") {
+						if (!(item.fname + " " + item.lname).includes(searchTerm)) {
+							return;
+						}
+					}
+					return (
+						<Card
+							key={item._id}
+							id={item._id}
+							name={item.fname + " " + item.lname}
+							image={"http://localhost:4000/" + item.image}
+							location={item.address}
+						/>
+					);
+				})}
 			</main>
 			<footer></footer>
 		</div>

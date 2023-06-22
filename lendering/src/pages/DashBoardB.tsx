@@ -59,7 +59,20 @@ const DashboardB = () => {
 	return (
 		<div className="container b">
 			<header className="b">
-				<span>LENDERING</span>
+				<div>
+					<span>LENDERING</span>
+					<span>
+						<a
+							href=""
+							onClick={() => {
+								localStorage.removeItem("token");
+								navigate("/login");
+							}}
+						>
+							Logout
+						</a>
+					</span>
+				</div>
 			</header>
 
 			<main className="b">

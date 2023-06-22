@@ -63,9 +63,22 @@ const Profile = () => {
 	return (
 		<div className="container profile">
 			<header className="profile">
-				<span>
-					<Link to="/Feed">LENDERING</Link>
-				</span>
+				<div>
+					<span>
+						<Link to="/Feed">LENDERING</Link>
+					</span>
+					<span>
+						<a
+							href=""
+							onClick={() => {
+								localStorage.removeItem("token");
+								navigate("/login");
+							}}
+						>
+							Logout
+						</a>
+					</span>
+				</div>
 			</header>
 			<main className="profile">
 				<div className="image">

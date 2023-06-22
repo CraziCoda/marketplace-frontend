@@ -100,7 +100,18 @@ const AdminView = () => {
 		<div className="container adminview">
 			<header className="adminview">
 				<span>
-					<Link to="/Feed">LENDERING</Link>
+					<Link to="">LENDERING</Link>
+				</span>
+				<span>
+					<a
+						href=""
+						onClick={() => {
+							localStorage.removeItem("token");
+							navigate("/login");
+						}}
+					>
+						Logout
+					</a>
 				</span>
 			</header>
 			<main className="adminview">

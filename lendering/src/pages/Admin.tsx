@@ -129,10 +129,6 @@ const Admin = () => {
 		}
 	}
 
-	function logout() {
-		localStorage.removeItem("token");
-	}
-
 	useEffect(() => {
 		if (!logged) login();
 		if (b_com == "" || l_com == "") getCom();
@@ -143,10 +139,16 @@ const Admin = () => {
 			<header className="admin">
 				<div>
 					<span>
-						<Link to="/Feed">LENDERING</Link>
+						<Link to="">LENDERING</Link>
 					</span>
 					<span>
-						<a href="" onClick={logout}>
+						<a
+							href=""
+							onClick={() => {
+								localStorage.removeItem("token");
+								navigate('/login')
+							}}
+						>
 							Logout
 						</a>
 					</span>

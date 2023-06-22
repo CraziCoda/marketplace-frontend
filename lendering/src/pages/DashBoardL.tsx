@@ -71,7 +71,20 @@ const DashboardL = () => {
 			/> */}
 
 			<header className="l">
-				<span>LENDERING</span>
+				<div>
+					<span>LENDERING</span>
+					<span>
+						<a
+							href=""
+							onClick={() => {
+								localStorage.removeItem("token");
+								navigate("/login");
+							}}
+						>
+							Logout
+						</a>
+					</span>
+				</div>
 			</header>
 
 			<main className="l">
@@ -125,10 +138,14 @@ const DashboardL = () => {
 							</thead>
 							<tbody>
 								{transactions.map((el, i) => {
+									if (el.accepted == false && el.active == false) return;
 									return (
-										<tr key={i} onClick={()=>{
-											navigate(`/transact?id=${el?.borrower}`)
-										}}>
+										<tr
+											key={i}
+											onClick={() => {
+												navigate(`/transact?id=${el?.borrower}`);
+											}}
+										>
 											<td>
 												{
 													// eslint-disable-next-line @typescript-eslint/ban-ts-comment
