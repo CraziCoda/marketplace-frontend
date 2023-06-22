@@ -37,10 +37,7 @@ const Admin = () => {
 		const token = localStorage.getItem("token");
 
 		if (token) {
-			const ans = confirm(
-				"User Already authenticated, Do you want to log in again"
-			);
-			if (!ans) return setLog(true);
+			return setLog(true);
 		}
 
 		const username = prompt("Enter Admin UserName", "");
@@ -53,13 +50,17 @@ const Admin = () => {
 			password: password,
 		});
 
+		console.log(response);
+
 		if (response.status == 200) {
-			if (response.data.success == false) return alert("Invalid credentails");
+			if (response.data.success == false) {
+				alert("Invalid credentails");
+			}
 			localStorage.setItem("token", response.data.token);
 			// navigate("DashboardB")
 			const user = response.data;
 			console.log(user);
-			return setLog(true);
+			setLog(true);
 		} else {
 			alert("Invalid Username or Password");
 			navigate("/");
@@ -71,6 +72,8 @@ const Admin = () => {
 
 		setBCom(result.data.borrower);
 		setLCom(result.data.lender);
+
+		setTimeout(getAllUsers, 1000);
 	}
 
 	async function setCom() {
@@ -103,28 +106,38 @@ const Admin = () => {
 	async function getAllUsers() {
 		const token = localStorage.getItem("token");
 
+		console.log(token);
+
 		if (!token) {
-			alert("User not authenticated");
-			navigate("/login");
+			navigate("/");
 		}
 
 		const headers = {
 			Authorization: `Bearer ${token}`,
 		};
-		const result = await axios.get(`http://localhost:4000/allusers`, {
-			headers,
-		});
+		try {
+			const result = await axios.get(`http://localhost:4000/allusers`, {
+				headers,
+			});
 
-		if (result.status == 200) {
-			setUsers(result.data);
-			console.log(result.data);
+			if (result.status == 200) {
+				setUsers(result.data);
+				return console.log(result.data);
+			}
+		} catch (e) {
+			alert("User authentication error");
+			navigate("/");
 		}
+	}
+
+	function logout() {
+		localStorage.removeItem("token");
 	}
 
 	useEffect(() => {
 		if (!logged) login();
 		if (b_com == "" || l_com == "") getCom();
-		if (users.length < 1) getAllUsers();
+		//getAllUsers();
 	});
 	return (
 		<div className="container admin">
@@ -134,7 +147,9 @@ const Admin = () => {
 						<Link to="/Feed">LENDERING</Link>
 					</span>
 					<span>
-						<a href="">Logout</a>
+						<a href="" onClick={logout}>
+							Logout
+						</a>
 					</span>
 				</div>
 			</header>
@@ -180,9 +195,12 @@ const Admin = () => {
 							</div>
 							<div className="promoted">Not Promoted</div>
 							<div className="action">
-								<ActionButton text="View" onClick={() => {
+								<ActionButton
+									text="View"
+									onClick={() => {
 										navigate(`/adminview?id=${el._id}`);
-									}}></ActionButton>
+									}}
+								></ActionButton>
 							</div>
 						</div>
 					);
