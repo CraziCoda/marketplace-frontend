@@ -126,7 +126,6 @@ const Admin = () => {
 			}
 		} catch (e) {
 			alert("User authentication error");
-			navigate("/");
 		}
 	}
 
