@@ -89,7 +89,7 @@ const Feed = () => {
 					<input
 						type="text"
 						className="search"
-						placeholder="Find a Lender"
+						placeholder={`Find a ${items[0]?.account_type}`}
 						onChange={(e) => {
 							setSearchTerm(e.target.value);
 						}}

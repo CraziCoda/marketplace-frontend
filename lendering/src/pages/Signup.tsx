@@ -1,6 +1,7 @@
-import { ReactEventHandler, ReactNode, useState } from "react";
+import { ReactEventHandler, ReactNode, useEffect, useState } from "react";
 import "./Signup.css";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 interface UserI {
 	fname: string;
@@ -157,15 +158,15 @@ const Signup = () => {
 			})
 				.then(async (res) => {
 					const response = await res.json();
-					if(response?.status == 200){
-						alert("Your account has been successfully.\n You will receive an email once verified ")
-					}else{
-						alert(response.message)
-						
+					if (response?.status == 200) {
+						alert(
+							"Your account has been successfully.\n You will receive an email once verified "
+						);
+					} else {
+						alert(response.message);
 					}
 
-					navigate("/login")
-
+					navigate("/login");
 				})
 				.catch((err) => {
 					console.log(err);
@@ -174,6 +175,30 @@ const Signup = () => {
 			return alert("Passwords do not match");
 		}
 	}
+
+	useEffect(() => {
+		const token = localStorage.getItem("token");
+
+		if (token) {
+			const headers = {
+				Authorization: `Bearer ${token}`,
+			};
+
+			axios
+				.get("http://localhost:4000/me", { headers })
+				.then((response) => {
+					const user = response.data;
+					if (user.account_type == "lender") {
+						navigate("/dashboard/lender");
+					} else {
+						navigate("/dashboard/borrower");
+					}
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		}
+	});
 
 	return (
 		<div className="container signup">

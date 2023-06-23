@@ -1,4 +1,4 @@
-import { ReactEventHandler, ReactNode, useState } from "react";
+import { ReactEventHandler, ReactNode, useEffect, useState } from "react";
 import "./Signin.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -72,6 +72,30 @@ const Signin = () => {
 			alert("Invalid Username or Password");
 		}
 	}
+
+	useEffect(() => {
+		const token = localStorage.getItem("token");
+
+		if (token) {
+			const headers = {
+				Authorization: `Bearer ${token}`,
+			};
+
+			axios
+				.get("http://localhost:4000/me", { headers })
+				.then((response) => {
+					const user = response.data;
+					if (user.account_type == "lender") {
+						navigate("/dashboard/lender");
+					} else {
+						navigate("/dashboard/borrower");
+					}
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		}
+	});
 	return (
 		<div className="container signin">
 			<header className="signin">
@@ -172,17 +196,4 @@ const Input = (props: InputProps) => {
 	);
 };
 
-// interface SelectProps {
-// 	children: ReactNode;
-// 	onChange?: ReactEventHandler;
-// 	value?: string | number | "Borrower" | "Lender";
-// }
-
-// const Select = (props: SelectProps) => {
-// 	return (
-// 		<select className="select" onChange={props.onChange} value={props.value}>
-// 			{props.children}
-// 		</select>
-// 	);
-// };
 export default Signin;
