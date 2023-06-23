@@ -75,7 +75,7 @@ const Profile = () => {
 								navigate("/login");
 							}}
 						>
-							Logout
+							LOGOUT
 						</a>
 					</span>
 				</div>
@@ -91,12 +91,13 @@ const Profile = () => {
 						<Label label="Account Type" value={user.account_type} />
 						<Label label="Rating" value="Not Rated" />
 						<Label label="Contact" value={user.contact} />
-						<Label label="Location" value={user.address} />
-						<Label label="Company" value={user.company || "Not Available"} />
+						
 					</div>
 					<div>
 						<Label label="Verifed" value={user.verified ? "Yes" : "No"} />
 						<Label label="Points" value={user.points} />
+						<Label label="Location" value={user.address} />
+						<Label label="Company" value={user.company || "Not Available"} />
 					</div>
 				</div>
 				<div className="actions">
