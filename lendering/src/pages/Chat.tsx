@@ -138,7 +138,7 @@ const Chat = () => {
 					</div>
 
 					<div className="person">
-						<Link to="/Feed">feed</Link>
+						<Link to="/Feed">Feed</Link>
 					</div>
 				</div>
 				<div className="panel chat">
