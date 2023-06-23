@@ -24,6 +24,8 @@ interface UserI {
 	kin_image: string;
 	address: string;
 	balance: number;
+	promoted: boolean;
+	suspended: boolean;
 	ratings: RatingI[];
 }
 
@@ -139,6 +141,7 @@ const AdminView = () => {
 						<Label label="Next of Kin" value={user.kin} />
 						<Label label="Next of Kin Contact" value={user.kin_contact} />
 						<Label label="Verifed" value={user.verified ? "Yes" : "No"} />
+						<Label label="Suspended" value={user.suspended ? "Yes" : "No"} />
 						<Label label="Points" value={user.points} />
 					</div>
 				</div>
@@ -167,7 +170,55 @@ const AdminView = () => {
 						disabled={user.verified}
 					/>
 					<ActionButton text="Promote" />
-					<ActionButton text="Suspend" />
+					{user.suspended ? (
+						<ActionButton
+							text="Unsuspend"
+							disabled={!user.suspended}
+							onClick={async () => {
+								const token = localStorage.getItem("token");
+
+								if (!token) {
+									alert("User not authenticated");
+									navigate("/login");
+								}
+
+								const headers = {
+									Authorization: `Bearer ${token}`,
+								};
+
+								const result = await axios.get(
+									`http://localhost:4000/unsuspend?id=${userID}`,
+									{ headers }
+								);
+
+								setUser(result.data);
+							}}
+						/>
+					) : (
+						<ActionButton
+							text="Suspend"
+							disabled={user.suspended}
+							onClick={async () => {
+								const token = localStorage.getItem("token");
+
+								if (!token) {
+									alert("User not authenticated");
+									navigate("/login");
+								}
+
+								const headers = {
+									Authorization: `Bearer ${token}`,
+								};
+
+								const result = await axios.get(
+									`http://localhost:4000/suspend?id=${userID}`,
+									{ headers }
+								);
+
+								setUser(result.data);
+							}}
+						/>
+					)}
 				</div>
 			</main>
 		</div>
