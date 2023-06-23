@@ -124,6 +124,7 @@ const Feed = () => {
 					);
 				})}
 				{items.map((item) => {
+					if (item?.suspended) return;
 					if (item?.promoted) return;
 					console.log(searchTerm);
 					if (searchTerm !== "") {
