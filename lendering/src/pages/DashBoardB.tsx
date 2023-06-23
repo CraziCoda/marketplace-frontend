@@ -99,7 +99,7 @@ const DashboardB = () => {
 							bgColor="orange"
 							// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 							//@ts-ignore
-							top={ data?.balance?.toFixed(2)}
+							top={data?.balance?.toFixed(2)}
 							bottom="Your active balance"
 						/>
 					</div>
@@ -152,6 +152,8 @@ const DashboardB = () => {
 							</thead>
 							<tbody>
 								{transactions.map((el, i) => {
+									if (el.accepted == false && el.active == false) return;
+
 									return (
 										<tr
 											key={i}

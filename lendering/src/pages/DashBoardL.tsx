@@ -98,9 +98,14 @@ const DashboardL = () => {
 							<Link to="/me" className="actions">
 								Load Wallet
 							</Link>
-							<a href="#" className="actions">
+							<Link
+								// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+								//@ts-ignore
+								to={`/promote?id=${data?.id}`}
+								className="actions"
+							>
 								Run Ads
-							</a>
+							</Link>
 						</div>
 						<div className="stats">
 							<InfoViewOutline

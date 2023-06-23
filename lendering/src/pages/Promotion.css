@@ -1,0 +1,124 @@
+.container.promotion {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+header.promotion {
+	width: 100%;
+	box-shadow: 0px 2px 2px #d4d2d2;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	height: 10%;
+}
+
+header.promotion > div {
+	width: 50%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+
+header.promotion span {
+	color: #0981d8;
+	font-size: 30px;
+	font-weight: bold;
+}
+main.promotion {
+	width: 50%;
+}
+
+main.promotion .input {
+	border: none;
+	border-bottom: solid 1px black;
+	background-color: transparent;
+	color: black;
+	outline: none;
+	width: 100%;
+	margin-top: 30px;
+}
+
+main.promotion .request {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+
+main.promotion .request .actionBtn {
+	margin-top: 20px;
+	width: 200px;
+	background-color: #0981d8;
+	font-weight: bold;
+}
+
+main.promotion .label {
+	font-weight: bolder;
+	font-size: 20px;
+	margin-top: 10px;
+}
+
+main.promotion .action {
+	margin-top: 30px;
+	width: 100%;
+	border: solid 1px #f0f0f0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+main.promotion .action .offer {
+	width: 90%;
+	height: 100px;
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	box-shadow: 0 0 5px #c4c2c2;
+}
+
+main.promotion .action .offer .amount {
+	font-weight: bolder;
+	font-size: 22px;
+	color: #0981d8;
+}
+
+main.promotion .action .offer .interest {
+	font-weight: bold;
+	font-size: 18px;
+	color: #ff9b04;
+	padding-top: 3px;
+}
+
+main.promotion .action .offer .date {
+	font-weight: bold;
+	font-size: 18px;
+	color: red;
+	padding-top: 3px;
+}
+
+main.promotion .action .offer .terms {
+	width: 65%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	align-content: center;
+}
+
+main.promotion .action .offer .btns {
+	width: 30%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+
+main.promotion .action .offer .btns .actionBtn {
+	background-color: #0981d8;
+}

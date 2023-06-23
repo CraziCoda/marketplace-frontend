@@ -14,6 +14,7 @@ import Transact from "./pages/Transact.tsx";
 import Me from "./pages/Me.tsx";
 import Admin from "./pages/Admin.tsx";
 import AdminView from "./pages/AdminView.tsx";
+import Promotion from "./pages/Promotion.tsx";
 
 const router = createBrowserRouter([
 	{
@@ -71,6 +72,11 @@ const router = createBrowserRouter([
 	{
 		path: "/adminview",
 		element: <AdminView />,
+	},
+
+	{
+		path: "/promote",
+		element: <Promotion />,
 	},
 ]);
 

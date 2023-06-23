@@ -120,6 +120,7 @@ const Feed = () => {
 					);
 				})}
 				{items.map((item) => {
+					if (item?.promoted) return;
 					if (searchTerm !== "") {
 						if (!(item.fname + " " + item.lname).includes(searchTerm)) {
 							return;
