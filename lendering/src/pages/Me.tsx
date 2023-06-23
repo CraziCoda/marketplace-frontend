@@ -129,7 +129,7 @@ const Me = () => {
 
 	return (
 		<div className="container profile">
-			<header className="profile">
+			<header className="me">
 				<div>
 					<span>
 						<Link to="/Feed">LENDERING</Link>
@@ -147,7 +147,7 @@ const Me = () => {
 					</span>
 				</div>
 			</header>
-			<main className="profile">
+			<main className="me">
 				<div className="image">
 					<img src={`http://localhost:4000/${user?.image}`} />
 				</div>

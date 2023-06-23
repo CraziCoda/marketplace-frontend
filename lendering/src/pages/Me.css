@@ -1,0 +1,98 @@
+.container.me {
+	flex: 1;
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+header.me {
+	width: 100%;
+	box-shadow: 0px 2px 2px #d4d2d2;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	height: 10%;
+}
+
+header.me > div {
+	width: 40%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+
+header.me span {
+	color: #0981d8;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+main.me {
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	margin: 1em 0 1em 0;
+	padding: 1em;
+	border: 1px solid #ccc;
+	height: 28rem;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+	border-radius: 5px;
+	gap: 1em;
+}
+
+main.me .image {
+	height: 50%;
+	display: flex;
+    justify-content: center;
+	border-radius: 5px;
+}
+
+main.me .image img{
+	width: 100%;
+	border: 1px solid #ccc;
+	object-fit: contain;
+}
+
+main.me .desc {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 2em;
+}
+
+
+main.me .desc .label {
+	display: flex;
+	align-items: center;
+	/* margin-top: 3px; */
+}
+
+main.me .desc .label .left {
+	/* color: #0981d8; */
+	font-size: 15px;
+	font-weight: bolder;
+}
+
+main.me .desc .label .right {
+	margin-left: 10px;
+}
+
+main.me .actions {
+	display: flex;
+	gap: 1em;
+	justify-content: center;
+}
+
+main.me .actions .actionBtn {
+	width: 10rem;
+	background-color: #0981d8;
+	font-weight: bold;
+	height: 2em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #fff;
+}
