@@ -9,6 +9,7 @@ const Chat = () => {
 	const [msg, setMsg] = useState("");
 	const [user, setUser] = useState("");
 	const [messages, setMessages] = useState([]);
+	const [accountType, setType] = useState("");
 	const navigate = useNavigate();
 
 	async function getUser() {
@@ -26,6 +27,7 @@ const Chat = () => {
 
 			const result = await axios.get(`http://localhost:4000/me`, { headers });
 			setUser(result.data?._id);
+			setType(result.data.account_type);
 
 			localStorage.setItem("chat_id", result.data._id);
 
@@ -114,13 +116,30 @@ const Chat = () => {
 	return (
 		<div className="container chat">
 			<header className="chat">
-				<span>
-					<Link to="/Feed">LENDERING</Link>
-				</span>
+				<div>
+					<span>LENDERING</span>
+					<span>
+						<a
+							href=""
+							onClick={() => {
+								localStorage.removeItem("token");
+								navigate("/login");
+							}}
+						>
+							Logout
+						</a>
+					</span>
+				</div>
 			</header>
 			<main className="chat">
 				<div className="board chat">
-					{/* <div className="person">Jeff Sarpong</div> */}
+					<div className="person">
+						<Link to={`/dashboard/${accountType}`}>Dashboard</Link>
+					</div>
+
+					<div className="person">
+						<Link to="/Feed">Feed</Link>
+					</div>
 				</div>
 				<div className="panel chat">
 					<div className="view">

@@ -10,20 +10,27 @@ header.transact {
 	width: 100%;
 	box-shadow: 0px 2px 2px #d4d2d2;
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	align-items: center;
 	justify-content: center;
 	height: 10%;
 }
 
-header.transact span {
+header.transact > div {
 	width: 50%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+
+header.transact span {
 	color: #0981d8;
 	font-size: 30px;
 	font-weight: bold;
 }
-main.transact{
-    width: 50%;
+main.transact {
+	width: 50%;
 }
 
 main.transact .input {
@@ -36,83 +43,82 @@ main.transact .input {
 	margin-top: 30px;
 }
 
-
-main.transact .request{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+main.transact .request {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
 }
 
 main.transact .request .actionBtn {
-    margin-top: 20px;
+	margin-top: 20px;
 	width: 200px;
 	background-color: #0981d8;
 	font-weight: bold;
 }
 
-main.transact .label{
-    font-weight: bolder;
-    font-size: 20px;
-    margin-top: 10px;
+main.transact .label {
+	font-weight: bolder;
+	font-size: 20px;
+	margin-top: 10px;
 }
 
-main.transact .action{
-    margin-top: 30px;
-    width: 100%;
-    border: solid 1px #F0F0f0;
-    display: flex;
-    flex-direction: column;
-   align-items: center;
+main.transact .action {
+	margin-top: 30px;
+	width: 100%;
+	border: solid 1px #f0f0f0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
-main.transact .action .offer{
-    width: 90%;
-    height: 100px;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    box-shadow: 0 0 5px #c4c2c2;
+main.transact .action .offer {
+	width: 90%;
+	height: 100px;
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	box-shadow: 0 0 5px #c4c2c2;
 }
 
-main.transact .action .offer .amount{
-    font-weight: bolder;
-    font-size: 22px;
-    color:#0981d8;
+main.transact .action .offer .amount {
+	font-weight: bolder;
+	font-size: 22px;
+	color: #0981d8;
 }
 
-main.transact .action .offer .interest{
-    font-weight: bold;
-    font-size: 18px;
-    color:#FF9B04;
-    padding-top: 3px;
+main.transact .action .offer .interest {
+	font-weight: bold;
+	font-size: 18px;
+	color: #ff9b04;
+	padding-top: 3px;
 }
 
-main.transact .action .offer .date{
-    font-weight: bold;
-    font-size: 18px;
-    color: red;
-    padding-top: 3px;
+main.transact .action .offer .date {
+	font-weight: bold;
+	font-size: 18px;
+	color: red;
+	padding-top: 3px;
 }
 
-main.transact .action .offer .terms{
-    width:65%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-content: center;
+main.transact .action .offer .terms {
+	width: 65%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	align-content: center;
 }
 
-main.transact .action .offer .btns{
-    width: 30%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+main.transact .action .offer .btns {
+	width: 30%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
 }
 
-main.transact .action .offer .btns .actionBtn{
-    background-color: #0981d8;
+main.transact .action .offer .btns .actionBtn {
+	background-color: #0981d8;
 }

@@ -94,6 +94,7 @@ main.l .tables {
 	width: 100%;
 	margin-top: 30px;
 	height: 70%;
+	overflow-y: auto;
 }
 
 main.l .tables table {

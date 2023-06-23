@@ -89,88 +89,88 @@ const DashboardL = () => {
 
 			<main className="main_content l">
 				<div className="main_area">
-				<div className="design"></div>
-				<div className="figures">
-					<div className="ac">
-						<Link to={`/feed`} className="actions">
-							Find Borrower
-						</Link>
-						<Link to="/me" className="actions">
-							Load Wallet
-						</Link>
-						<a href="#" className="actions">
-							Run Ads
-						</a>
-					</div>
-					<div className="stats">
-						<InfoViewOutline
-							main="Revenue"
-							label="Interests"
-							// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-							//@ts-ignore
-							value={`Ghc ${data.revenue}`}
-						/>
+					<div className="design"></div>
+					<div className="figures">
+						<div className="ac">
+							<Link to={`/feed`} className="actions">
+								Find Borrower
+							</Link>
+							<Link to="/me" className="actions">
+								Load Wallet
+							</Link>
+							<a href="#" className="actions">
+								Run Ads
+							</a>
+						</div>
+						<div className="stats">
+							<InfoViewOutline
+								main="Revenue"
+								label="Interests"
+								// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+								//@ts-ignore
+								value={`Ghc ${data?.revenue?.toFixed(2)}`}
+							/>
 
-						<InfoViewOutline
-							main="Accumulate Score"
-							label="Interests"
-							// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-							//@ts-ignore
-							value={`${data.points} pts`}
-						/>
+							<InfoViewOutline
+								main="Accumulate Score"
+								label="Points"
+								// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+								//@ts-ignore
+								value={`${data.points}pts`}
+							/>
 
-						<InfoViewFill
-							bgColor="#0981D8"
-							// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-							//@ts-ignore
-							top={`GHc ${data?.balance}`}
-							bottom="Your active balance"
-						/>
-					</div>
+							<InfoViewFill
+								bgColor="#0981D8"
+								// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+								//@ts-ignore
+								top={`GHc ${data?.balance?.toFixed(2)}`}
+								bottom="Your active balance"
+							/>
+						</div>
 
-					<div className="tables">
-						<table>
-							<thead>
-								<tr>
-									<th>Client Name</th>
-									<th>Paid</th>
-									<th>Amount (Interest %)</th>
-								</tr>
-							</thead>
-							<tbody>
-								{transactions.map((el, i) => {
-									if (el.accepted == false && el.active == false) return;
-									return (
-										<tr
-											key={i}
-											onClick={() => {
-												navigate(`/transact?id=${el?.borrower}`);
-											}}
-										>
-											<td>
-												{
-													// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-													//@ts-ignore
-													data.names[data.ids.indexOf(el.borrower)]
-												}
-											</td>
-											<td>
-												{el.accepted && !el.active ? (
-													<span style={{ color: "green" }}>Yes</span>
-												) : (
-													<span style={{ color: "red" }}>No</span>
-												)}
-											</td>
-											<td style={{ fontWeight: "bold" }}>
-												{el.amount} GHS ({el.interest}%)
-											</td>
-										</tr>
-									);
-								})}
-							</tbody>
-						</table>
+						<div className="tables">
+							<table>
+								<thead>
+									<tr>
+										<th>Client Name</th>
+										<th>Paid</th>
+										<th>Amount (Interest %)</th>
+									</tr>
+								</thead>
+								<tbody>
+									{transactions.map((el, i) => {
+										if (el.accepted == false && el.active == false) return;
+										return (
+											<tr
+												key={i}
+												onClick={() => {
+													navigate(`/transact?id=${el?.borrower}`);
+												}}
+											>
+												<td>
+													{
+														// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+														//@ts-ignore
+														data.names[data.ids.indexOf(el.borrower)]
+													}
+												</td>
+												<td>
+													{el.accepted && !el.active ? (
+														<span style={{ color: "green" }}>Yes</span>
+													) : (
+														<span style={{ color: "red" }}>No</span>
+													)}
+												</td>
+												<td style={{ fontWeight: "bold" }}>
+													{el.amount} GHS ({el.interest}%)
+												</td>
+											</tr>
+										);
+									})}
+								</tbody>
+							</table>
+						</div>
 					</div>
-				</div>
 				</div>
 			</main>
 		</div>
