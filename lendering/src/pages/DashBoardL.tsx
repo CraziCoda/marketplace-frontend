@@ -108,7 +108,7 @@ const DashboardL = () => {
 							label="Interests"
 							// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 							//@ts-ignore
-							value={`Ghc ${data.revenue}`}
+							value={`Ghc ${data.revenue.toFixed(2)}`}
 						/>
 
 						<InfoViewOutline
@@ -116,14 +116,14 @@ const DashboardL = () => {
 							label="Interests"
 							// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 							//@ts-ignore
-							value={`${data.points} pts`}
+							value={`${data.points.toFixed(2)} pts`}
 						/>
 
 						<InfoViewFill
 							bgColor="#0981D8"
 							// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 							//@ts-ignore
-							top={`GHc ${data?.balance}`}
+							top={`GHc ${data?.balance.toFixed(2)}`}
 							bottom="Your active balance"
 						/>
 					</div>

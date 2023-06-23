@@ -1,7 +1,7 @@
 import { ReactEventHandler, useEffect, useState } from "react";
 import "./Transact.css";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 type RequestKeys = "amount" | "interest" | "date";
 
@@ -105,26 +105,33 @@ const Transact = () => {
 		) {
 			return alert("Invalid inputs");
 		}
-		const response = await axios.post(
-			"http://localhost:4000/propose",
-			{
-				interest: formData.interest,
-				amount: formData.amount,
-				date: formData.date,
-				to: to,
-			},
-			{
-				headers,
-			}
-		);
-		console.log(response.status);
 
-		if (response.status == 200) {
-			setFormData({ date: "", amount: 0, interest: 0 });
-			location.reload();
-		} else {
-			alert("User not authenticated");
-			navigate("/login");
+		try {
+			const response = await axios.post(
+				"http://localhost:4000/propose",
+				{
+					interest: formData.interest,
+					amount: formData.amount,
+					date: formData.date,
+					to: to,
+				},
+				{
+					headers,
+				}
+			);
+			console.log(response.status);
+
+			if (response.status == 200) {
+				setFormData({ date: "", amount: 0, interest: 0 });
+				location.reload();
+			} else {
+				alert("User not authenticated");
+				navigate("/login");
+			}
+		} catch (err) {
+			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+			//@ts-ignore
+			alert(err.response.data.message);
 		}
 	}
 
@@ -194,9 +201,22 @@ const Transact = () => {
 	return (
 		<div className="container profile">
 			<header className="transact">
-				<span>
-					<Link to="/Feed">LENDERING</Link>
-				</span>
+				<div>
+					<span>
+						<Link to="/Feed">LENDERING</Link>
+					</span>
+					<span>
+						<a
+							href=""
+							onClick={() => {
+								localStorage.removeItem("token");
+								navigate("/login");
+							}}
+						>
+							Logout
+						</a>
+					</span>
+				</div>
 			</header>
 			<main className="transact">
 				<div className="request">
