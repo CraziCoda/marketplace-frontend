@@ -113,7 +113,7 @@ const DashboardL = () => {
 
 							<InfoViewOutline
 								main="Accumulate Score"
-								label="Interests"
+								label="Points"
 								// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 								//@ts-ignore
 								value={`${data.points}pts`}

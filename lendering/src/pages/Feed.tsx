@@ -26,6 +26,8 @@ interface UserI {
 	kin_image: string;
 	address: string;
 	balance: number;
+	promoted: boolean;
+	suspended: boolean;
 	ratings: RatingI[];
 }
 
@@ -98,6 +100,25 @@ const Feed = () => {
 				</div>
 			</header>
 			<main className="feed">
+				{items.map((item) => {
+					if (item?.suspended) return;
+					if (!item?.promoted) return;
+					if (searchTerm !== "") {
+						if (!(item.fname + " " + item.lname).includes(searchTerm)) {
+							return;
+						}
+					}
+					return (
+						<Card
+							key={item._id}
+							id={item._id}
+							name={item.fname + " " + item.lname}
+							image={"http://localhost:4000/" + item.image}
+							location={item.address}
+							promoted={item.promoted}
+						/>
+					);
+				})}
 				{items.map((item) => {
 					if (searchTerm !== "") {
 						if (!(item.fname + " " + item.lname).includes(searchTerm)) {

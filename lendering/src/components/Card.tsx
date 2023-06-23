@@ -5,20 +5,20 @@ interface CardProps {
 	name: string;
 	id: string;
 	location: string;
+	promoted?: boolean;
 }
 
 const Card = (props: CardProps) => {
 	const navigate = useNavigate();
 
-
-	function open(id: string){
-		navigate(`/profile?id=${id}`)
+	function open(id: string) {
+		navigate(`/profile?id=${id}`);
 	}
 	return (
 		<div style={style.card}>
 			<div style={style.top}>
 				<div style={style.image}>
-					<img src={props.image} alt={props.name} style={style.img}/>
+					<img src={props.image} alt={props.name} style={style.img} />
 				</div>
 			</div>
 			<div style={style.bottom}>
@@ -29,8 +29,16 @@ const Card = (props: CardProps) => {
 				<div style={style.desc}>{props.location}</div>
 				<div style={style.foot}>
 					<div style={style.rating}>No ratings</div>
-					<button style={style.button} onClick={()=>{open(props.id)}}>View</button>
+					<button
+						style={style.button}
+						onClick={() => {
+							open(props.id);
+						}}
+					>
+						View
+					</button>
 				</div>
+				<div style={style.rating}>{props.promoted ? "Promoted" : ""}</div>
 			</div>
 		</div>
 	);
@@ -43,7 +51,7 @@ interface StyleObject {
 const style: StyleObject = {
 	card: {
 		width: 250,
-		height: 250,
+		height: 270,
 		boxShadow: "0px 0px 2px grey",
 		borderRadius: 5,
 	},
@@ -64,7 +72,7 @@ const style: StyleObject = {
 		margin: 10,
 	},
 	img: {
-		width:230,
+		width: 230,
 		height: 80,
 		objectFit: "cover",
 	},

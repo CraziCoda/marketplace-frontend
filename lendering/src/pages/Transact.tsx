@@ -222,6 +222,7 @@ const Transact = () => {
 				<div className="request">
 					<div className="label">Make Request</div>
 					<div className="inputs">
+						<label>Amount: </label>
 						<Input
 							placeholder="Amount. Eg. 100"
 							type="number"
@@ -230,6 +231,8 @@ const Transact = () => {
 							}
 							value={formData.amount}
 						/>
+						<label>Interest: </label>
+
 						<Input
 							placeholder="Interest. Eg..  10%"
 							type="number"
@@ -238,6 +241,8 @@ const Transact = () => {
 							}
 							value={formData.interest}
 						/>
+						<label>Due Date: </label>
+
 						<Input
 							placeholder="Due Date"
 							type="date"
