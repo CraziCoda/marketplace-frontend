@@ -206,7 +206,7 @@ const Admin = () => {
 					if (el.verified == true) return;
 					return (
 						<div className="user" key={i}>
-							<div className="name">J{`${el.fname} ${el.lname}`}</div>
+							<div className="name">{`${el.fname} ${el.lname}`}</div>
 							<div className="v-status">
 								{el.verified ? "Verfied" : "Not verified"}
 							</div>
@@ -227,7 +227,7 @@ const Admin = () => {
 					if (el.verified == false) return;
 					return (
 						<div className="user" key={i}>
-							<div className="name">J{`${el.fname} ${el.lname}`}</div>
+							<div className="name">{`${el.fname} ${el.lname}`}</div>
 							<div className="v-status">
 								{el.verified ? "Verfied" : "Not verified"}
 							</div>
