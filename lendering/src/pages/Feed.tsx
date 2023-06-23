@@ -104,7 +104,11 @@ const Feed = () => {
 					if (item?.suspended) return;
 					if (!item?.promoted) return;
 					if (searchTerm !== "") {
-						if (!(item.fname + " " + item.lname).includes(searchTerm)) {
+						if (
+							!(item.fname + " " + item.lname)
+								.toLowerCase()
+								.includes(searchTerm.toLowerCase())
+						) {
 							return;
 						}
 					}
@@ -121,8 +125,13 @@ const Feed = () => {
 				})}
 				{items.map((item) => {
 					if (item?.promoted) return;
+					console.log(searchTerm);
 					if (searchTerm !== "") {
-						if (!(item.fname + " " + item.lname).includes(searchTerm)) {
+						if (
+							!(item.fname + " " + item.lname)
+								.toLowerCase()
+								.includes(searchTerm.toLowerCase())
+						) {
 							return;
 						}
 					}

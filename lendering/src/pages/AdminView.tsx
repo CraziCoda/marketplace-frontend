@@ -60,7 +60,7 @@ const AdminView = () => {
 			"User Image",
 			"Ghana Card",
 			"Next of Kin Image",
-			"Next of Kin Ghana",
+			"Next of Kin Ghana Card",
 		];
 
 		const keysO = ["image", "ghana_card", "kin_image", "kin_ghana_card"];
@@ -99,20 +99,22 @@ const AdminView = () => {
 	return (
 		<div className="container adminview">
 			<header className="adminview">
-				<span>
-					<Link to="">LENDERING</Link>
-				</span>
-				<span>
-					<a
-						href=""
-						onClick={() => {
-							localStorage.removeItem("token");
-							navigate("/login");
-						}}
-					>
-						Logout
-					</a>
-				</span>
+				<div>
+					<span>
+						<Link to="">LENDERING</Link>
+					</span>
+					<span>
+						<a
+							href=""
+							onClick={() => {
+								localStorage.removeItem("token");
+								navigate("/login");
+							}}
+						>
+							Logout
+						</a>
+					</span>
+				</div>i
 			</header>
 			<main className="adminview">
 				<div className="img-type">{images[currentImage]?.type}</div>

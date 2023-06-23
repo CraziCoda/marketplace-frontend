@@ -37,33 +37,51 @@ const Admin = () => {
 		const token = localStorage.getItem("token");
 
 		if (token) {
-			return setLog(true);
+			const headers = {
+				Authorization: `Bearer ${token}`,
+			};
+			try {
+				const res = await axios.get("http://localhost:4000/verifyToken", {
+					headers,
+				});
+				console.log(res.data);
+				if (res.status == 200) {
+					getAllUsers();
+					return setLog(true);
+				}
+			} catch (err) {
+				console.log(err);
+				localStorage.removeItem("token");
+			}
 		}
 
 		const username = prompt("Enter Admin UserName", "");
 		const password = prompt("Enter admin Password", "");
 
-		console.log(username, password);
+		// console.log(username, password);
 
-		const response = await axios.post("http://localhost:4000/auth/admin", {
-			username: username,
-			password: password,
-		});
+		try {
+			const response = await axios.post("http://localhost:4000/auth/admin", {
+				username: username,
+				password: password,
+			});
 
-		console.log(response);
+			// console.log(response);
 
-		if (response.status == 200) {
-			if (response.data.success == false) {
-				alert("Invalid credentails");
+			if (response.status == 200) {
+				if (response.data.success == false) {
+					alert("Invalid credentails");
+					return;
+				}
+				localStorage.setItem("token", response.data.token);
+				getAllUsers();
+				setLog(true);
+			} else {
+				alert("Invalid Username or Password");
+				navigate("/");
 			}
-			localStorage.setItem("token", response.data.token);
-			// navigate("DashboardB")
-			const user = response.data;
-			console.log(user);
-			setLog(true);
-		} else {
+		} catch (error) {
 			alert("Invalid Username or Password");
-			navigate("/");
 		}
 	}
 
@@ -72,8 +90,6 @@ const Admin = () => {
 
 		setBCom(result.data.borrower);
 		setLCom(result.data.lender);
-
-		setTimeout(getAllUsers, 1000);
 	}
 
 	async function setCom() {
@@ -132,7 +148,7 @@ const Admin = () => {
 	useEffect(() => {
 		if (!logged) login();
 		if (b_com == "" || l_com == "") getCom();
-		//getAllUsers();
+		// if (logged && !(b_com == "" || l_com == "")) getAllUsers();
 	});
 	return (
 		<div className="container admin">
@@ -146,7 +162,7 @@ const Admin = () => {
 							href=""
 							onClick={() => {
 								localStorage.removeItem("token");
-								navigate('/login')
+								navigate("/login");
 							}}
 						>
 							Logout
