@@ -114,7 +114,8 @@ const AdminView = () => {
 							Logout
 						</a>
 					</span>
-				</div>i
+				</div>
+				i
 			</header>
 			<main className="adminview">
 				<div className="img-type">{images[currentImage]?.type}</div>
@@ -135,6 +136,8 @@ const AdminView = () => {
 						<Label label="Company" value={user.company || "Not Available"} />
 					</div>
 					<div>
+						<Label label="Next of Kin" value={user.kin} />
+						<Label label="Next of Kin Contact" value={user.kin_contact} />
 						<Label label="Verifed" value={user.verified ? "Yes" : "No"} />
 						<Label label="Points" value={user.points} />
 					</div>
