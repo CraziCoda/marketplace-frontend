@@ -24,6 +24,8 @@ interface UserI {
 	kin_image: string;
 	address: string;
 	balance: number;
+	promoted: boolean;
+	suspended: boolean;
 }
 
 const Admin = () => {
@@ -210,7 +212,9 @@ const Admin = () => {
 							<div className="v-status">
 								{el.verified ? "Verfied" : "Not verified"}
 							</div>
-							<div className="promoted">Not Promoted</div>
+							<div className="promoted">
+								{el.promoted ? "Promoted" : "Not Promoted"}
+							</div>
 							<div className="action">
 								<ActionButton
 									text="View"
@@ -231,7 +235,9 @@ const Admin = () => {
 							<div className="v-status">
 								{el.verified ? "Verfied" : "Not verified"}
 							</div>
-							<div className="promoted">Not Promoted</div>
+							<div className="promoted">
+								{el.promoted ? "Promoted" : "Not Promoted"}
+							</div>
 							<div className="action">
 								<ActionButton
 									text="View"

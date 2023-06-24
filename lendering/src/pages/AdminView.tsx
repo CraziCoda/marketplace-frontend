@@ -117,7 +117,6 @@ const AdminView = () => {
 						</a>
 					</span>
 				</div>
-				i
 			</header>
 			<main className="adminview">
 				<div className="img-type">{images[currentImage]?.type}</div>
@@ -169,7 +168,55 @@ const AdminView = () => {
 						}}
 						disabled={user.verified}
 					/>
-					<ActionButton text="Promote" />
+					{user.promoted ? (
+						<ActionButton
+							text="Unpromote"
+							disabled={!user.promoted}
+							onClick={async () => {
+								const token = localStorage.getItem("token");
+
+								if (!token) {
+									alert("User not authenticated");
+									navigate("/login");
+								}
+
+								const headers = {
+									Authorization: `Bearer ${token}`,
+								};
+
+								const result = await axios.get(
+									`http://localhost:4000/unpromote?id=${userID}`,
+									{ headers }
+								);
+
+								setUser(result.data);
+							}}
+						/>
+					) : (
+						<ActionButton
+							text="Promote"
+							disabled={user.promoted}
+							onClick={async () => {
+								const token = localStorage.getItem("token");
+
+								if (!token) {
+									alert("User not authenticated");
+									navigate("/login");
+								}
+
+								const headers = {
+									Authorization: `Bearer ${token}`,
+								};
+
+								const result = await axios.get(
+									`http://localhost:4000/promote?id=${userID}`,
+									{ headers }
+								);
+
+								setUser(result.data);
+							}}
+						/>
+					)}
 					{user.suspended ? (
 						<ActionButton
 							text="Unsuspend"

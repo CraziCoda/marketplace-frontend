@@ -147,6 +147,7 @@ const DashboardB = () => {
 								<tr>
 									<th>Client Name</th>
 									<th>Paid</th>
+									<th>Amount Left</th>
 									<th>Amount (Interest %)</th>
 								</tr>
 							</thead>
@@ -175,6 +176,7 @@ const DashboardB = () => {
 													<span style={{ color: "red" }}>No</span>
 												)}
 											</td>
+											<td style={{ fontWeight: "bold" }}>{el.debt} GHS</td>
 											<td style={{ fontWeight: "bold" }}>
 												{el.amount} GHS ({el.interest}%)
 											</td>

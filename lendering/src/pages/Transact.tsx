@@ -283,9 +283,15 @@ const Transact = () => {
 														Authorization: `Bearer ${token}`,
 													};
 
+													const amount = parseFloat(
+														prompt("Enter amount to be paid") || ""
+													);
+
 													const response = await axios.post(
-														`http://localhost:4000/payback?id=${el._id}`,
-														{},
+														`http://localhost:4000/payback2?id=${el._id}`,
+														{
+															amount,
+														},
 														{
 															headers,
 														}

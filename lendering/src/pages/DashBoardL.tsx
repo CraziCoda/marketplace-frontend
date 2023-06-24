@@ -139,6 +139,7 @@ const DashboardL = () => {
 									<tr>
 										<th>Client Name</th>
 										<th>Paid</th>
+										<th>Amount Received</th>
 										<th>Amount (Interest %)</th>
 									</tr>
 								</thead>
@@ -165,6 +166,9 @@ const DashboardL = () => {
 													) : (
 														<span style={{ color: "red" }}>No</span>
 													)}
+												</td>
+												<td style={{ fontWeight: "bold" }}>
+													{el.amount_settled} GHS
 												</td>
 												<td style={{ fontWeight: "bold" }}>
 													{el.amount} GHS ({el.interest}%)
